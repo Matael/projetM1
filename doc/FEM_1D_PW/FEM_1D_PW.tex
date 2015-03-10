@@ -1,0 +1,70 @@
+\documentclass[a4paper, 11pt]{article}
+
+	\input{../preamble.tex}
+
+    \title{FEM 1D -- Plane Wave excitation}
+    \author{Mathieu Gaborit}
+
+
+\begin{document}
+	\maketitle
+
+	We consider a 1D duct of length L along $x$.
+
+	\paragraph{Boundary conditions}
+
+	The duct is closed with inifite impedance wall at $x = L$ and open at $x = 0$.
+
+	We consider a plane wave harmonic excitation at $x = 0$.
+
+	\begin{equation}
+		\left.\frac{\partial p}{\partial n}\right\|_{x=L} = 0 \label{FEM1DPW:BC_L}
+	\end{equation}
+
+	\begin{equation}
+		\left.p\right\|_{x=0} = p_i + p_rA \label{FEM1DPW:BC_0}
+	\end{equation}
+
+
+	\paragraph{Wave equation}
+
+	One can consider the general wave equation without source:
+
+	\begin{equation}
+		\Delta p + \frac{1}{c^2} \frac{\partial^2 p}{\partial t^2} = 0 \label{FEM1DPW:wave_eq}
+	\end{equation}
+
+	Assuming a 1D harmonic problem, equation~\eqref{FEM1DPW:wave_eq} reads as the Helmholtz equation~\eqref{FEM1DPW:helmholtz}.
+
+	\begin{equation}
+		\Delta p + k^2 p  = 0 \Rightarrow \frac{\partial^2p}{\partial x^2} + k^2p = 0\label{FEM1DPW:helmholtz}
+	\end{equation}
+
+	\paragraph{Variational Formulation}
+
+	Multiplying equation~\eqref{FEM1DPW:helmholtz} by a test field and integrating over the domain, one transfer the
+	problem under variational formalism :
+
+	\begin{eqnarray*}
+		\int_0^L\frac{\partial^2p}{\partial x^2}v\dx + k^2\int_0^L pv\dx = 0 ,&& \forall v \\
+		\underbrace{\bigg[~p'v~\bigg]_0^L}_{(*)}-\int_0^Lp'v'\dx + k^2\int_0^Lpv\dx = 0, && \forall v
+	\end{eqnarray*}
+
+	Using equation~\eqref{FEM1DPW:BC_L}, one gets :
+
+	\begin{eqnarray*}
+		\bigg[~p'v~\bigg]_0^L & = & \cancel{p'(L)v(L)} - p'(0)v(0)\\
+							  & = & - p'(0)v(0)
+	\end{eqnarray*}
+
+	Therefore, we have :
+
+	\begin{eqnarray}
+		-\int_0^Lp'v'\dx + k^2\int_0^Lpv\dx = p'(0)v(0), && \forall v \label{FEM1DPW:FV}
+	\end{eqnarray}
+
+
+
+
+\end{document}
+
