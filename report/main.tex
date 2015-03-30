@@ -1,0 +1,175 @@
+\documentclass[a4paper, 11pt]{report}
+
+    % preambule {{{
+
+    % TODOS
+    \usepackage[colorinlistoftodos]{todonotes}
+
+	\usepackage[utf8]{inputenc}
+	\usepackage[T1]{fontenc}
+    \usepackage[frenchb]{babel}
+    \usepackage{textcomp}
+	\usepackage[top=3cm,left=3cm,right=3cm,bottom=3cm]{geometry}
+    \usepackage{lmodern}
+    \usepackage{sectsty}
+    \usepackage{nicefrac}
+	\usepackage{graphicx}
+    \usepackage{lastpage}
+    \usepackage{fancyhdr}
+    \usepackage{amsmath}
+    \usepackage{amssymb}
+    \usepackage{amsfonts}
+    \usepackage{capt-of}
+    \usepackage{caption}
+    \usepackage{subcaption}
+    \usepackage{wrapfig}
+    \usepackage{bm} % bold math
+    \usepackage{tikz}
+
+    \usepackage{fancyvrb} % pour forcer les verbatim sur une seule page
+    \usepackage{url}
+
+	\title{Couplage des méthodes FEM et DGM}
+	\author{Mathieu \textsc{Gaborit} \hfill Encadrant : Olivier \textsc{Dazel}}
+	\date{M1 Acoustique
+    \vskip 2mm
+    Année universitaire 2014-2015}
+
+	\makeatletter
+	\def\thetitle{\@title}
+	\def\theauthor{\@author}
+	\def\thedate{\@date}
+	\makeatother
+
+    \sectionfont{
+    \sectionrule{0pt}{0pt}{-5pt}{0.4pt}
+    }
+
+    % interligne
+    \renewcommand{\baselinestretch}{1.1}
+
+    \setcounter{secnumdepth}{5}
+    \setcounter{tocdepth}{3}
+    \addto\captionsfrench{\renewcommand{\chaptername}{Partie}}
+    \renewcommand{\thechapter}{\arabic{chapter}}
+    \renewcommand{\thesection}{\Roman{section}.}
+    \renewcommand{\thesubsection}{\Roman{section}.\arabic{subsection}.}
+    \renewcommand{\thesubsubsection}{\alph{subsubsection})}
+	\renewcommand{\theparagraph}{}
+
+	\newcommand\matlab{MATLab\textsuperscript{\textregistered}}
+    %\renewcommand\vec{\overrightarrow}
+    \renewcommand\equiv{\Leftrightarrow}
+    \newcommand\diag{\mathrm{diag}}
+    \renewcommand{\phi}\varphi
+    \newcommand{\J}{\mathrm{J}}
+    \newcommand{\Jmat}{\bm{\mathrm{J}}}
+
+    \pagestyle{fancy}
+
+    \fancypagestyle{plain}{%
+        \fancyhf{} % clear all header and footer fields
+        \fancyfoot[L]{\textsc{Gaborit}}
+        \fancyfoot[C]{}
+        \fancyfoot[R]{\thepage/\pageref{LastPage}}
+        \renewcommand{\headrulewidth}{0pt}
+        \renewcommand{\footrulewidth}{.4pt}
+    }
+
+    \fancypagestyle{toc}{%
+        \fancyhf{} % clear all header and footer fields
+        \fancyfoot[L]{\textsc{Gaborit}}
+        \fancyfoot[C]{}
+		\fancyfoot[R]{\thepage}
+        \renewcommand{\headrulewidth}{0pt}
+        \renewcommand{\footrulewidth}{.4pt}
+    }
+
+    \renewcommand{\headrulewidth}{0pt}
+    \renewcommand{\footrulewidth}{.4pt}
+    \lhead{}
+    \chead{}
+    \rhead{}
+    \lfoot{\textsc{Gaborit}}
+    \cfoot{}
+    \rfoot{\thepage/\pageref{LastPage}}
+
+    % }}}
+\begin{document}
+
+
+% page de titre [PAS TOUCHE] {{{1
+\begin{titlepage}
+
+% logo Univ
+\begin{flushright}
+\includegraphics[width=4cm]{logo.png}
+\end{flushright}
+
+
+\vskip 6cm
+
+% Titre
+\begin{flushleft}
+\huge{\textbf{\thetitle}}
+\vskip .5cm
+\hrule height 3pt
+\vskip .5cm
+\hfill\huge{\textbf{Rapport de projet}}
+\end{flushleft}
+
+\vfill
+
+\begin{center}
+\Large{
+\thedate
+}
+\end{center}
+
+\vskip 1cm
+\hrule height .5pt
+\vskip .5cm
+
+\begin{flushleft}
+\theauthor
+\end{flushleft}
+
+\end{titlepage}
+
+
+\newpage\thispagestyle{empty}\null\newpage
+
+\pagenumbering{roman}
+\rfoot{\thepage}
+\setcounter{page}{1}
+\input{thanks.tex}
+
+\newpage
+% sommaire [PAS TOUCHE] {{{1
+\renewcommand{\contentsname}{Sommaire
+\vskip .5cm
+\hrule height .5pt}
+\tableofcontents
+\thispagestyle{toc}
+\newpage
+
+
+% Chapitres {{{1
+\rfoot{\thepage/\pageref{LastPage}}
+\pagenumbering{arabic}
+\setcounter{page}{1}
+\input{introduction.tex}
+
+
+
+\newpage
+\input{conclusion.tex}
+
+% previous style : alpha
+\nocite{*}
+\bibliographystyle{alpha}
+\bibliography{biblio}
+
+\appendix
+
+\end{document}
