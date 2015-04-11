@@ -79,7 +79,7 @@ R_ana = (Zi-Zc)/(Zi+Zc);
 % error
 err = zeros(N_elem_max, 1);
 for i=1:N_elem_max
-	err(i) = abs(R_vect(i) - R_ana)/abs(R_ana);
+	err(i) = norm(angle(R_vect(i)) - angle(R_ana),2)/norm(angle(R_ana),2);
 end
 
 
