@@ -1,6 +1,7 @@
 \newcommand\DP{\delta p}
 \newcommand\dd{\mathrm{d}}
 \newcommand\ul{\underline}
+\newcommand\uul[1]{\underline{\underline{#1}}}
 
 \section{Formulation par éléments finis --- Cas 1D}
 
@@ -81,13 +82,13 @@ Il est alors possible de ré-écrire les équations de~\eqref{FEM1D:shapefun} de
 en~\eqref{FEM1D:shapevec}.
 
 \begin{equation}
-	\left\{\begin{array}{l}
-		p = \big[\phi_1\big|\phi_2\big]\begin{Bmatrix}p_i\\p_j\end{Bmatrix}\\
-		p' = \big[\phi_1'\big|\phi_2'\big]\begin{Bmatrix}p_i\\p_j\end{Bmatrix}\\
+	left\{\begin{array}{l}
+        p = \big[\phi_1\big|\phi_2\big]\begin{Bmatrix}p_i\\p_j\end{Bmatrix} = \big[\phi_1|\phi_2\big]\ul{p}\\
+		p' = \big[\phi_1'\big|\phi_2'\big]\begin{Bmatrix}p_i\\p_j\end{Bmatrix} = \big[\phi_1'|\phi_2'\big]\ul{p}\\
 	\end{array}\right.,\quad
-	\left\{\begin{array}{l}
-		\DP = \big[\phi_1\big|\phi_2\big]\begin{Bmatrix}\DP_i\\\DP_j\end{Bmatrix}\\
-		\DP' = \big[\phi_1'\big|\phi_2'\big]\begin{Bmatrix}\DP_i\\\DP_j\end{Bmatrix}\\
+	left\{\begin{array}{l}
+        \DP = \big[\phi_1\big|\phi_2\big]\begin{Bmatrix}\DP_i\\\DP_j\end{Bmatrix} = \big[\phi_1\big|\phi_2\big]\ul{\DP}\\
+		\DP' = \big[\phi_1'\big|\phi_2'\big]\begin{Bmatrix}\DP_i\\\DP_j\end{Bmatrix} = \big[\phi_1'\big|\phi_2'\big]\ul{\DP}\\
 	\end{array}\right.\label{FEM1D:shapevec}
 \end{equation}
 
@@ -95,7 +96,56 @@ En utilisant cette dernière équation~\eqref{FEM1D:shapevec}, en considérant u
 que $\Omega = \sum_e\Omega_e$ où l'équation~\eqref{FEM1D:helm} est vérifiée sur chacune des parties de $\Omega$ et en
 utilisant la relation de Chasles, il vient :
 
-\begin{equation}
-	\int_\Omega p'~\DP'~\dd\Omega - k^2\int_\Omega p~\DP~\dd\Omega = -p'(0)\DP(0) = 
-		\sum_e \left\{\int_{\Omega_e} p'~\DP'~\dd\Omega - k^2\int_{\Omega_e} p~\DP~\dd\Omega \right\}= -p'(0)\DP(0), \quad \forall\DP \label{FEM1D:IPP}
-\end{equation}
+\begin{eqnarray}
+    \int_\Omega p'~\DP'~\dd\Omega - k^2\int_\Omega p~\DP~\dd\Omega & = & -p'(0)\DP(0), \quad \forall\DP\notag\\
+    \Leftrightarrow \sum_e \left\{\int_{\Omega_e} p_e'~\DP_e'~\dd\Omega
+        - k^2\int_{\Omega_e} p_e~\DP_e~\dd\Omega \right\}
+        & = & -p'(0)\DP(0), \quad \forall\DP \notag\\
+    \Leftrightarrow \sum_e \left\{\int_{\Omega_e}
+        \ul{\DP}_e^T\big[\phi_1'|\phi_2'\big]^T\big[\phi_1'|\phi_2'\big]\ul{p}_e~\dd\Omega
+        - k^2\int_{\Omega_e}
+        \ul{\DP}_e^T\big[\phi_1|\phi_2\big]^T\big[\phi_1|\phi_2\big]\ul{p}_e~\dd\Omega \right\}
+        & = & -p'(0)\DP(0), \quad \forall\DP\notag\\
+    \Leftrightarrow \sum_e \left\{\int_{\Omega_e}
+    \ul{\DP}_e^T\begin{bmatrix}\phi_1'^2 & \phi_1'\phi_2'\\\phi_1'\phi_2'& \phi_2'^2\end{bmatrix}\ul{p}_e~\dd\Omega
+        - k^2\int_{\Omega_e}
+\ul{\DP}_e^T\begin{bmatrix}\phi_1'^2 & \phi_1'\phi_2'\\\phi_1'\phi_2' & \phi_2'^2\end{bmatrix}\ul{p}_e~\dd\Omega \right\}
+        & = & -p'(0)\DP(0), \quad \forall\DP\notag\\
+    \Leftrightarrow \sum_e \left\{
+    \ul{\DP}_e^T\begin{bmatrix}\int_{\Omega_e}\phi_1'^2 & \int_{\Omega_e}\phi_1'\phi_2'\\\int_{\Omega_e}\phi_1'\phi_2'& \int_{\Omega_e}\phi_2'^2\end{bmatrix}\ul{p}_e~\dd\Omega
+        - k^2
+\ul{\DP}_e^T\begin{bmatrix}\int_{\Omega_e}\phi_1'^2 & \int_{\Omega_e}\phi_1'\phi_2'\\\int_{\Omega_e}\phi_1'\phi_2' & \int_{\Omega_e}\phi_2'^2\end{bmatrix}\ul{p}_e~\dd\Omega \right\}
+        & = & -p'(0)\DP(0), \quad \forall\DP\notag\\
+    \Leftrightarrow \sum_e \left\{\int_{\Omega_e}
+        \ul{\DP}_e^T\uul{K_e}\ul{p}_e~\dd\Omega - k^2\int_{\Omega_e} \ul{\DP}_e^T\uul{M_e}\ul{p}_e~\dd\Omega \right\}
+        & = & -p'(0)\DP(0), \quad \forall\DP\notag\\\label{FEM1D:elem_mat}
+\end{eqnarray}
+
+Dans les équations précédentes, les quantités indicées d'un $e$ sont valables sur un élément. Les quantités soulignées
+une fois sont des vecteurs, celles soulignés deux fois des matrices\footnote{Le nombre de soulignements correspondant à
+l'ordre tensoriel de la quantité.}.
+
+\paragraph{Matrices Booléennes et Vecteurs Globaux}
+\newcommand{\GP}{\ul{\mathbb{P}}}
+\newcommand{\GDP}{\ul{\delta\mathbb{P}}}
+L'objectif est maitenant d'exprimer l'intérieur de la somme en fonction non plus des extrémités de l'éléments en cours
+$\ul{p}_e$ et $\ul{\DP}_e$ mais des vecteurs globaux $\GP$ et $\GDP$.
+
+En notant que on peut exprimer $\ul{p}_e$ sur le premier élément en fonction de $\GP$ \textit{via} :
+
+\begin{equation*}
+    \ul{p}_e =
+    \underbrace{\begin{bmatrix}
+         1 & 0 & 0 & \cdots & 0\\
+         0 & 1 & 0 & \cdots & 0
+    \end{bmatrix}}_{\uul{L}_e}\GP
+\end{equation*}
+
+De même il est possible d'exprimer $\ul{\DP}_e^T = \GDP^T\uul{L}_e^T$. En remplaçant dans~\eqref{FEM1D:elem_mat}, il
+vient :
+
+\begin{eqnarray}
+    \sum_e \left\{\int_{\Omega_e}
+        \uul{\DP}_e^T\uul{K_e}\ul{p}_e~\dd\Omega - k^2\int_{\Omega_e} \ul{\DP}_e^T\uul{M_e}\ul{p}_e~\dd\Omega \right\}
+        & = & -p'(0)\DP(0), \quad \forall\DP\notag\\
+\end{eqnarray}
