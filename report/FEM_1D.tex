@@ -109,15 +109,16 @@ utilisant la relation de Chasles, il vient :
     \Leftrightarrow \sum_e \left\{\int_{\Omega_e}
     \ul{\DP}_e^T\begin{bmatrix}\phi_1'^2 & \phi_1'\phi_2'\\\phi_1'\phi_2'& \phi_2'^2\end{bmatrix}\ul{p}_e~\dd\Omega
         - k^2\int_{\Omega_e}
-\ul{\DP}_e^T\begin{bmatrix}\phi_1'^2 & \phi_1'\phi_2'\\\phi_1'\phi_2' & \phi_2'^2\end{bmatrix}\ul{p}_e~\dd\Omega \right\}
+\ul{\DP}_e^T\begin{bmatrix}\phi_1^2 & \phi_1\phi_2\\\phi_1\phi_2 & \phi_2^2\end{bmatrix}\ul{p}_e~\dd\Omega \right\}
         & = & -p'(0)\DP(0), \quad \forall\DP\notag\\
     \Leftrightarrow \sum_e \left\{
-    \ul{\DP}_e^T\begin{bmatrix}\int_{\Omega_e}\phi_1'^2 & \int_{\Omega_e}\phi_1'\phi_2'\\\int_{\Omega_e}\phi_1'\phi_2'& \int_{\Omega_e}\phi_2'^2\end{bmatrix}\ul{p}_e~\dd\Omega
+	\ul{\DP}_e^T\underbrace{\begin{bmatrix}\int_{\Omega_e}\phi_1'^2\dd\Omega & \int_{\Omega_e}\phi_1'\phi_2'\dd\Omega\\\int_{\Omega_e}\phi_1'\phi_2'\dd\Omega& \int_{\Omega_e}\phi_2'^2\dd\Omega\end{bmatrix}}_{\uul{K}_e}\ul{p}_e
         - k^2
-\ul{\DP}_e^T\begin{bmatrix}\int_{\Omega_e}\phi_1'^2 & \int_{\Omega_e}\phi_1'\phi_2'\\\int_{\Omega_e}\phi_1'\phi_2' & \int_{\Omega_e}\phi_2'^2\end{bmatrix}\ul{p}_e~\dd\Omega \right\}
+\ul{\DP}_e^T\underbrace{\begin{bmatrix}\int_{\Omega_e}\phi_1^2\dd\Omega &
+\int_{\Omega_e}\phi_1\phi_2\dd\Omega\\\int_{\Omega_e}\phi_1\phi_2\dd\Omega & \int_{\Omega_e}\phi_2^2\dd\Omega\end{bmatrix}}_{\uul{M}_e}\ul{p}_e \right\}
         & = & -p'(0)\DP(0), \quad \forall\DP\notag\\
-    \Leftrightarrow \sum_e \left\{\int_{\Omega_e}
-        \ul{\DP}_e^T\uul{K_e}\ul{p}_e~\dd\Omega - k^2\int_{\Omega_e} \ul{\DP}_e^T\uul{M_e}\ul{p}_e~\dd\Omega \right\}
+    \Leftrightarrow \sum_e \left\{
+        \ul{\DP}_e^T\uul{K_e}\ul{p}_e~\dd\Omega - k^2\ul{\DP}_e^T\uul{M_e}\ul{p}_e~\dd\Omega \right\}
         & = & -p'(0)\DP(0), \quad \forall\DP\notag\\\label{FEM1D:elem_mat}
 \end{eqnarray}
 
@@ -145,7 +146,92 @@ De même il est possible d'exprimer $\ul{\DP}_e^T = \GDP^T\uul{L}_e^T$. En rempl
 vient :
 
 \begin{eqnarray}
-    \sum_e \left\{\int_{\Omega_e}
-        \uul{\DP}_e^T\uul{K_e}\ul{p}_e~\dd\Omega - k^2\int_{\Omega_e} \ul{\DP}_e^T\uul{M_e}\ul{p}_e~\dd\Omega \right\}
-        & = & -p'(0)\DP(0), \quad \forall\DP\notag\\
+    \sum_e \left\{
+        \uul{\DP}_e^T\uul{K_e}\ul{p}_e~ - k^2 \ul{\DP}_e^T\uul{M_e}\ul{p}_e~ \right\}
+        & = & -p'(0)\GDP_0, \quad \forall\GDP\notag\\
+	\Leftrightarrow
+    \sum_e \left\{
+	\GDP^T\uul{L}_e^T\uul{K_e}\uul{L}_e\GP~\dd\Omega - k^2 \GDP^T\uul{L}_e^T\uul{M_e}\uul{L}_e\GP~\dd\Omega \right\}
+	& = & -p'(0)\GDP_0, \quad \forall\GDP\label{FEM1D:post_boolean}
 \end{eqnarray}
+
+Comme ni $\GP$ ni $\GDP$ ne dépendent de l'élément, il est possible de les sortir de la some, qui est ensuite distribué
+sur les deux termes comme suit :
+
+\begin{equation*}
+	\GDP^T\left[\underbrace{\sum_e \left\{ \uul{L}_e^T\uul{K_e}\uul{L}_e\right\}}_{\uul{K}}
+	- k^2 \underbrace{\sum_e\left\{\uul{L}_e^T\uul{M_e}\uul{L}_e\right\}}_{\uul{M}}\right]\GP
+	& = & -p'(0)\GDP_0, \quad \forall\GDP
+\end{equation*}
+
+Le fait que cette expression soit valable pour tout $\GDP$, implique :
+
+\begin{equation}
+\left[\uul{K} - k^2\uul{M}\right]\GP = \begin{Bmatrix} - p'(0) \\0\\\vdots\\0\end{Bmatrix} \label{FEM1D:final}
+\end{equation}
+
+\paragraph{Prise en compte de l'excitation}
+Le problème est posé de sorte que l'entrée du résonateur est excitée par un onde plane se propageant vers les $x$
+croissants et que les interactions à l'interface produisent une onde plane réfléchie se propageant vers les $x$
+décroissants. Ainsi, en notant $p_i$ l'onde incidente et $p_r$ l'onde réfléchie :
+
+\begin{equation*}
+	\left\{
+	\begin{array}{l}
+		p_i(x) = 1e^{-jk_xx}\\
+		p_r(x) = Re^{+jk_xx}
+	\end{array}
+	\right.
+\end{equation*}
+
+La continuité des pression et des vitesses normales en $x=0$ amène :
+
+\begin{equation*}
+	p(0) = e^{-jk_x\times0}+Re^{jk_x\times0} \Leftrightarrow p'(0) = jk(R-1)
+\end{equation*}
+
+En remplaçant ce dernier résultat dans~\eqref{FEM1D:final}, il vient :
+
+\begin{equation}
+\left[\uul{K} - k^2\uul{M}\right]\GP = \begin{Bmatrix} -jk(R-1)  \\0\\\vdots\\0\end{Bmatrix} \label{FEM1D:final}
+\end{equation}
+
+Il est alors intéressant de rassembler les inconnues sur la gauche de l'équation en introduisant le vecteur étendu
+suivant :
+
+\begin{equation*}
+	\ul{X} = [\GP ~|~ R]^T
+\end{equation*}
+
+Il est aussi nécéssaire d'étendre la matrice de la partie gauche d'une colonne. Pour maintenir des dimensions cohérentes
+dans le système d'équations, il faudra enfin retranscrire la condition de continuité suivante sur la dernière ligne :
+
+\begin{equation*}
+	\uul{P}_0 = 1 + R
+\end{equation*}
+
+\begin{equation}
+	\left(~
+	\begin{matrix}
+		&&&&\\
+	    & & \uul{K} - k^2\uul{M} & &\\&&&&\\\hline
+		1 & 0 & \cdots & 0 & -1 \\
+	\end{matrix}
+	\right.
+	\left|
+	\begin{matrix}
+		\\
+		\GP\\\\\hline
+		R
+	\end{matrix}
+	~\right) = 
+	\left\{~
+	\begin{matrix}
+		jk\\
+		0\\
+		\vdots\\
+		0\\\hline
+		1
+	\end{matrix}
+	~\right\}
+\end{equation}
