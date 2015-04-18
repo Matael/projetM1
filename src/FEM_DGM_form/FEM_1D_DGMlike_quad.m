@@ -150,6 +150,9 @@ loglog(1:N_elem_max, err_R_ref, 'b', 'LineWidth', 2)
 hold on;
 loglog(1:N_elem_max, err_R_test, 'r', 'LineWidth', 2)
 legend('FEM+R', 'FEM(DGMlike BC)')
-
+grid on;
+xlabel('Nb. Elements')
+ylabel('Error')
+print('-dpng', 'comparison_DGMlike_FEM.png')
 
 
