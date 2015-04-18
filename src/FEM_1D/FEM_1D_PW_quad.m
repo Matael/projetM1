@@ -34,15 +34,15 @@ c = 343;
 Zc = rho*c;
 
 % frequency
-f = 500; % Hz
+f = 1000; % Hz
 k = 2*pi*f/c;
 
 % geometrical
 L = 1;
 
-N_elem_max = 100;
+N_elem_max = 200;
 R_vect = zeros(N_elem_max,1);
-for N_elem=1:100
+for N_elem=1:N_elem_max
 
 	% Discretization
 	h = L/N_elem;
