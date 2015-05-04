@@ -133,7 +133,7 @@ for N_elem=1:N_elem_max
 
 
 	drv_H0 = @(x) 6*x^2/h^3- 6*x/h^2;
-	drv_H1 = @(x) (3*x^2/h^3-4^x/h^2+1)*h;
+	drv_H1 = @(x) (3*x^2/h^3-4*x/h^2+1/h)*h;
 	drv_H2 = @(x) -6*x^2/h^3+6*x/h^2;
 	drv_H3 = @(x) (3*x^2/h^3-2*x/h^2)*h;
 
@@ -191,10 +191,10 @@ for N_elem=1:N_elem_max
 	b = zeros(2*Nddl_herm,1);
 	b(1) = -j*k;
 	A(1,1) = A(1,1) - 0.5*j*k;
-	A(1,2) = A(1,2) - 0.5/h;
+	A(1,2) = A(1,2) - 0.5;
 
 	p_test = A\b;
-	R_vect_test(N_elem) = 0.5*(p_test(1)+ Zc*p_test(2)/(j*omega*rho*h));
+	R_vect_test(N_elem) = 0.5*(p_test(1)+ p_test(2)/(j*k));
 
 
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
