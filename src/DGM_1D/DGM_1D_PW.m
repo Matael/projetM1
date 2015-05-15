@@ -43,10 +43,17 @@ L = [c, 0 ; 0, -c];
 P = [1, 1; Z0, -Z0];
 Q = inv(P);
 
+% DEBUG
+disp('Vérification de la diagonalisation : P*L*Q - F =')
+P*L*Q-F
+
+
 % Boundary condition matrices
 Cm = [P(:,1) , [-1/Z0; 1]];
 Cp = [[1/Z0; 1], P(:,2)];
-Rtilde = inv(Cm)*Cp;
+
+disp('Calcul de R tilde : ')
+Rtilde = inv(Cm)*Cp
 
 
 val_pos = real(diag(L)) >= 0;
@@ -59,22 +66,32 @@ Qm(:,find(val_pos)) = zeros(2,1);
 Qp = Q-Qm;
 
 xm = l/2;
-Uu = [
-	exp(j*k*xm)/Z0 , -exp(-j*k*xm)/Z0;
-	exp(j*k*xm) , exp(-j*k*xm)
+Uu = @(x) [
+	exp(-j*k*x)/Z0 , -exp(j*k*x)/Z0;
+	exp(-j*k*x) , exp(j*k*x)
 ];
-Uv = Uu;
+% Uvt = @(x) transpose(conj(Uu(x)));
+Uvt = @(x) transpose(Uu(x));
 
 % matrix on the left-hand side
-LH_mat = Uv'*P*(Lp*Rtilde(1,2)+Lm)*Qm*Uu;
-RH_vec = -Uv'*P*Lp*Rtilde(1,1)*ones(2,1);
+% LH_mat = -Uvt(l)*P*L*Qm*Uu(l)+Uvt(0)*P*(Lp*Rtilde(1,2)+Lm)*Qm*Uu(0);
+% RH_vec = -Uvt(0)*P*Lp*Rtilde(1,1)*ones(2,1);
+LH_mat = Uvt(l)*P*L*Qm*Uu(l)-Uvt(0)*P*(Lp*Rtilde(1,2)+Lm)*Qm*Uu(0);
+RH_vec = Uvt(0)*P*Lp*Rtilde(1,1)*ones(2,1);
 
 amplitudes = LH_mat\RH_vec;
 
-R = Rtilde(2,1) + Rtilde(2,2)*ones(1,2)*Qm*Uu*amplitudes(1:2);
+R = Rtilde(2,1) + Rtilde(2,2)*Qm*Uu(0)*amplitudes(1:2);
 angle(R)
+
+Zi = Z0/(j*tan(k*l));
+R_ana = angle((Zi-Z0)/(Zi+Z0))
 
 figure;
 x_v = (0:.005:l);
-p = Uu(2,1)*amplitudes(1)*exp(-j*k*x_v)+Uu(2,2)*amplitudes(2)*exp(j*k*x_v);
-plot(x_v, p);
+for idx=1:length(x_v)
+	xi = x_v(idx);
+	Uu_xi = Uu(xi);
+	p(idx) = Uu_xi(2,:)*amplitudes(1:2);
+end
+plot(x_v, p, 'LineWidth', 2);
