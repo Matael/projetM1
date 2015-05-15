@@ -21,8 +21,8 @@
 %  0. You just DO WHAT THE FUCK YOU WANT TO.
 %
 
-clear all;
-close all;
+% clear all;
+% close all;
 % load utils
 addpath('../utils'); load_utils
 
