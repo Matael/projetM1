@@ -53,8 +53,8 @@
     \addto\captionsfrench{\renewcommand{\chaptername}{Partie}}
     \renewcommand{\thechapter}{\arabic{chapter}}
     \renewcommand{\thesection}{\Roman{section}.}
-    \renewcommand{\thesubsection}{\Alph{subsection})}
-    \renewcommand{\thesubsubsection}{\arabic{subsubsection}.}
+    \renewcommand{\thesubsection}{\Roman{section}.\arabic{subsection}.}
+    \renewcommand{\thesubsubsection}{\alph{subsubsection})}
 	\renewcommand{\theparagraph}{}
 
 
@@ -157,23 +157,11 @@
 \input{introduction.tex}
 
 \part{Fondamentaux}
-\input{part1/FEM/general.tex}
-\input{part1/FEM/interp.tex}
-\input{part1/FEM/cas1D.tex}
-\input{part1/DGM/general.tex}
-\input{part1/DGM/discretisation.tex}
-\input{part1/DGM/cas1D.tex}
+\input{FEM_1D.tex}
+\input{DGM_1D.tex}
 
 \part{Le rapprochement}
-\input{part2/boundary_cond.tex}
-\input{part2/caracteristiques.tex}
-\input{part2/hermite.tex}
-\input{part2/rapport_DGM.tex}
-
-\part{Couplage}
-\input{part3/FEM_POV.tex}
-\input{part3/DGM_POV.tex}
-\input{part3/convergence.tex}
+\input{FEM_with_DGMlike_conditions.tex}
 
 \newpage
 \input{conclusion.tex}

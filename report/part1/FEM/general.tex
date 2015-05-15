@@ -1,0 +1,135 @@
+\section{Méthode des éléments finis}
+
+\todo[inline]{intro FEM}
+
+\subsection{Généralités}
+\label{FEM1D:subsection:linear}
+
+\paragraph{Formulation Variationnelle}
+
+Le problème est régi par l'équation d'Helmholtz sans source telle que présentée en~\eqref{FEM1D:helm} (avec $k =
+\nicefrac{\omega}{c}$ le nombre d'onde, $c$ la célérité du son dans le milieu, et $\omega$ la pulsation).
+
+\begin{equation}
+	(\Delta + k^2)p(x,\omega) = 0 \label{FEM1D:helm}
+\end{equation}
+
+En faisant usage de la formulation variationnelle (avec $\DP$ le champ variationnel), puis d'une intégration par
+parties, le problème s'exprime comme en~\eqref{FEM1D:IPP}.
+
+\begin{eqnarray}
+	\int_\Omega \Delta p~\DP~\dd\Omega + k^2 \int_\Omega p~\DP~\dd\Omega & =  & 0,\quad \forall\DP\notag\\
+	- \int_\Omega \nabla p~\nabla \DP ~\dd\Omega + k^2\int_\Omega p~\DP~\dd\Omega & = & -\int_{\partial\Omega}\nabla p~\DP\dd\Gamma, \quad \forall\DP \label{FEM1D:IPP}
+\end{eqnarray}
+
+\paragraph{Fonctions de forme}
+
+Supposant que les champs $p$ et $\DP$ sur un intervale $[x_i, x_j]$ sont décomposables en une combinaison linéaire de
+fonctions $\phi_k$ (dites fonctions de forme) assorties des valeurs du champs à des points particuliers $x_k$ du domaine, il
+vient (cas 1D):
+
+\begin{equation}
+	\left\{\begin{array}{l}
+		p = \sum_{k=1}^N \phi_k(x)p(x_k)\\
+		p' = \sum_{k=1}^N \phi_k'(x)p(x_k)\\
+	\end{array}\right., \quad
+	\left\{\begin{array}{l}
+		\DP = \sum_{k=1}^N \phi_k(x)\DP(x_k)\\
+		\DP' = \sum_{k=1}^N \phi_k'(x)\DP(x_k)\\
+	\end{array}\right.\label{FEM1D:shapefun}
+\end{equation}
+
+Pour alléger les notations, on pose $\alpha_k\equiv \alpha(x_k)$ où $\alpha$ est un champ et $x_k$ un point, de même
+$\phi_k\equiv\phi_k(x)$.
+
+Il est de ré-écrire les équations de~\eqref{FEM1D:shapefun} de manière vectorielle comme présenté
+en~\eqref{FEM1D:shapevec}.
+
+\begin{equation}
+        p = \big[\phi_1\big|\cdots\big|\phi_N\big]\begin{Bmatrix}p_i\\\vdots\\p_j\end{Bmatrix} =
+			\big[\phi_1\big|\cdots\big|\phi_N\big]\ul{p}\label{FEM1D:shapevec}
+\end{equation}
+
+Et de même pour les champs $p'$, $\DP$ et $\DP'$, on note $\ul{\phi}$ et $\ul{\phi'}$ les vecteurs des fonctions de
+forme et de leur dérivées respectivement.
+
+En utilisant cette dernière équation~\eqref{FEM1D:shapevec}, en considérant une partition du domaine $\Omega$ de sorte
+que $\Omega = \sum_e\Omega_e$ où l'équation~\eqref{FEM1D:helm} est vérifiée sur chacune des parties de $\Omega$ et en
+utilisant la relation de Chasles, il vient (de~\eqref{FEM1D:post_IPP}):
+
+\begin{eqnarray*}
+	- \int_\Omega \nabla p~\nabla \DP ~\dd\Omega + k^2\int_\Omega p~\DP~\dd\Omega & = & -\int_{\partial\Omega}\nabla p~\DP~\dd\Gamma, \quad \forall\DP\\
+\Leftrightarrow \sum_e\left\{- \int_{\Omega_e} \nabla p_e~\nabla \DP_e ~\dd\Omega + k^2\int_{\Omega_e} p_e~\DP_e~\dd\Omega \right\}& = & -\int_{\partial\Omega}\nabla p~\DP~\dd\Gamma, \quad \forall\DP\\
+	\Leftrightarrow \sum_e\left\{- \int_{\Omega_e} \ul{\DP}_e^T\ul{\phi'^T\phi'}\ul{p}_e~\dd\Omega + k^2\int_{\Omega_e} \ul{\DP}_e^T\ul{\phi^T\phi}\ul{p}_e~\dd\Omega \right\}& = & -\int_{\partial\Omega}\nabla p~\DP~\dd\Gamma, \quad \forall\DP\\
+\end{eqnarray*}
+
+
+Dans les équations précédentes, les quantités indicées d'un $e$ sont valables sur un élément. Les quantités soulignées
+une fois sont des vecteurs, celles soulignés deux fois des matrices\footnote{Le nombre de soulignements correspondant à
+l'ordre tensoriel de la quantité.}.
+Après calcul des produits $\ul{\phi^T\phi}$ et $\ul{\phi'^T\phi'}$ et passage des intégrales dans les matrices ainsi
+obtenues, il vient :
+
+\begin{equation}
+	\Leftrightarrow \sum_e\left\{- \ul{\DP^T}~\uul{K}_e~\ul{p} + k^2 \ul{\DP^T}~\uul{M}_e~\ul{p} \right\} = -\int_{\partial\Omega}\nabla p~\DP\dd\Gamma, \quad \forall\DP\label{FEM1D:elem_mat}\\
+\end{equation}
+
+Avec :
+
+\begin{equation*}
+	\uul{M}_e = \begin{bmatrix}
+		\int_{\Omega_e}\phi_1^2\dd\Omega & \int_{\Omega_e}\phi_1\phi_2\dd\Omega & \cdots  &\int_{\Omega_e}\phi_1\phi_N\dd\Omega\\
+		\int_{\Omega_e}\phi_2\phi_1\dd\Omega & \int_{\Omega_e}\phi_2^2\dd\Omega & &\\
+		\vdots & & \ddots & \vdots\\
+		\int_{\Omega_e}\phi_N\phi_1\dd\Omega & & \cdots & \int_{\Omega_e}\phi_N^2\dd\Omega
+	\end{bmatrix}
+\end{equation*}
+
+Et de même pour $\uul{K}_e$ en considérant les dérivées $(\phi'_1,\ldots,\phi'_N)$ des fonctions de forme plutôt que les
+fonctions elles-mêmes. Ces matrices sont appelées matrices élémentaires.
+
+\paragraph{Matrices Booléennes et Vecteurs Globaux}
+\newcommand{\GP}{\ul{\mathbb{P}}}
+\newcommand{\GDP}{\ul{\delta\mathbb{P}}}
+L'objectif est maitenant d'exprimer l'intérieur de la somme en fonction non plus des extrémités de l'éléments en cours
+$\ul{p}_e$ et $\ul{\DP}_e$ mais des vecteurs globaux $\GP$ et $\GDP$.
+
+En notant que on peut exprimer $\ul{p}_e$ sur le premier élément en fonction de $\GP$ \textit{via} :
+
+\begin{equation*}
+    \ul{p}_e =
+    \underbrace{\begin{bmatrix}
+         1 & 0 & 0 & \cdots & 0\\
+         0 & 1 & 0 & \cdots & 0
+    \end{bmatrix}}_{\uul{L}_e}\GP
+\end{equation*}
+
+De même il est possible d'exprimer $\ul{\DP}_e^T = \GDP^T\uul{L}_e^T$. En remplaçant dans~\eqref{FEM1D:elem_mat}, il
+vient :
+
+\begin{equation}
+    \sum_e \left\{
+	\GDP^T\uul{L}_e^T\uul{K_e}\uul{L}_e\GP~\dd\Omega - k^2 \GDP^T\uul{L}_e^T\uul{M_e}\uul{L}_e\GP~\dd\Omega \right\}
+	= -\int_{\partial\Omega}\nabla p~\DP\dd\Gamma, \quad \forall\GDP\label{FEM1D:post_boolean}
+\end{equation}
+
+
+Si on considère un problème 1D de longueur L (tel que présenté en figure~\ref{fig:FEM:propa_1D}), alors le second membre
+peut s'écrire :
+
+$$-\int_{\partial\Omega}\nabla p~\DP\dd\Gamma = -\left(\nabla p\bigg|_L\GDP_N- \nabla p\bigg|_0\GDP_0\right)$$
+
+Comme ni $\GP$ ni $\GDP$ ne dépendent de l'élément, il est possible de les sortir de la somme, qui est ensuite
+distribuée sur les deux termes comme suit :
+
+\begin{equation*}
+	\GDP^T\left[\underbrace{\sum_e \left\{ \uul{L}_e^T\uul{K_e}\uul{L}_e\right\}}_{\uul{K}}
+	- k^2 \underbrace{\sum_e\left\{\uul{L}_e^T\uul{M_e}\uul{L}_e\right\}}_{\uul{M}}\right]\GP
+	= -\left(\nabla p\bigg|_L\GDP_N- \nabla p\bigg|_0\GDP_0\right), \quad \forall\GDP
+\end{equation*}
+
+Le fait que cette expression soit valable pour tout $\GDP$, implique :
+
+\begin{equation}
+\left[- \uul{K} + k^2\uul{M}\right]\GP = \begin{Bmatrix} \nabla p\bigg|_0\\0\\\vdots\\0\\-\nabla p\bigg|_L\end{Bmatrix} \label{FEM1D:final}
+\end{equation}

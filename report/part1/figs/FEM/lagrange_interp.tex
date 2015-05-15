@@ -1,0 +1,40 @@
+\begin{tikzpicture}
+	\def\h{2};
+
+	% PHI 1
+	\draw[thick] plot [domain=0:\h] (\x,{((\h-2*\x)*(\h-\x))/(\h*\h)});
+	\draw[->] (-.3,0) -- (\h+.5,0);
+	\draw[->] (0,-.3) -- (0,1.5);
+	\draw[fill=red] (0,1) circle (.05);
+	\draw[fill=red] (\h*.5,0) circle (.05);
+	\draw[fill=red] (\h,0) circle (.05);
+	\draw (-.1,1) node[left] {$1$} --++(.2,0);
+	\draw (\h,-.1) node[below] {$h$} --++(0,.2);
+	\draw (\h*.5,-.5) node {$\phi_1$};
+
+	% PHI 2
+	\begin{scope}[shift={(\h+2,0)}]
+		\draw[thick] plot [domain=0:\h] (\x,{(-4*\x*(\x-\h))/(\h*\h)});
+		\draw[->] (-.3,0) -- (\h+.5,0);
+		\draw[->] (0,-.3) -- (0,1.5);
+		\draw[fill=red] (0,0) circle (.05);
+		\draw[fill=red] (\h*.5,1) circle (.05);
+		\draw[fill=red] (\h,0) circle (.05);
+		\draw[dashed] (-.1,1) node[left] {$1$} -- (\h*.5,1);
+		\draw (\h,-.1) node[below] {$h$} --++(0,.2);
+		\draw (\h*.5,-.5) node {$\phi_2$};
+	\end{scope}
+
+	% PHI 2
+	\begin{scope}[shift={({2*(\h+2)},0)}]
+		\draw[thick] plot [domain=0:\h] (\x,{(\x*(2*\x-\h))/(\h*\h)});
+		\draw[->] (-.3,0) -- (\h+.5,0);
+		\draw[->] (0,-.3) -- (0,1.5);
+		\draw[fill=red] (0,0) circle (.05);
+		\draw[fill=red] (\h*.5,0) circle (.05);
+		\draw[fill=red] (\h,1) circle (.05);
+		\draw[dashed] (-.1,1) node[left] {$1$} -- (\h,1);
+		\draw[dashed] (\h,-.1) node[below] {$h$} -- (\h,1);
+		\draw (\h*.5,-.5) node {$\phi_3$};
+	\end{scope}
+\end{tikzpicture}
