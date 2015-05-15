@@ -29,9 +29,9 @@ p_test = real(p_test((1:Nddl_herm)*2-1))'; % FEM
 p = real(p); % DGM
 
 figure;
-plot(x_v,p_test,'b');
+plot(x_v,p_test,'b', 'LineWidth', 2);
 hold on;
-plot(x_v,p,'r');
+plot(x_v,p,'r', 'LineWidth', 2);
 legend('Hermite FEM', 'DGM')
 print('-dpng', 'comp_hermiteFEM_dgm.png')
 
