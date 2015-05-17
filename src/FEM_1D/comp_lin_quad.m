@@ -112,29 +112,31 @@ for N_elem=1:N_elem_max
 	%%%%%%%%%%%%%%%%%%%%%
 	% BEGIN LINEAR
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+	h = L/(2*N_elem);
 	% elementary matrices
 	M_elem_lin = h/6*[2 1; 1 2];
 	K_elem_lin = 1/h*[1 -1; -1 1];
 
 	% global matrices construction
-	M_global_lin = sparse(N_elem+1,N_elem+1);
-	K_global_lin = sparse(N_elem+1,N_elem+1);
-	for i=1:N_elem
+	M_global_lin = sparse(2*N_elem+1,2*N_elem+1);
+	K_global_lin = sparse(2*N_elem+1,2*N_elem+1);
+	for i=1:2*N_elem
 		M_global_lin(i:i+1,i:i+1) = M_global_lin(i:i+1,i:i+1) + M_elem_lin;
 		K_global_lin(i:i+1,i:i+1) = K_global_lin(i:i+1,i:i+1) + K_elem_lin;
 	end
 
 	% global matrix
-	A_lin = sparse(N_elem+2,N_elem+2);
-	A_lin(1:N_elem+1,1:N_elem+1) = k^2*M_global_lin - K_global_lin;
+	A_lin = sparse(2*N_elem+2,2*N_elem+2);
+	A_lin(1:2*N_elem+1,1:2*N_elem+1) = k^2*M_global_lin - K_global_lin;
 
-	A_lin(N_elem+2,1) = 1;
-	A_lin(N_elem+2,N_elem+2) = -1;
-	A_lin(1,N_elem+2) = -j*k;
+	A_lin(2*N_elem+2,1) = 1;
+	A_lin(2*N_elem+2,2*N_elem+2) = -1;
+	A_lin(1,2*N_elem+2) = -j*k;
 
-	b_lin = zeros(N_elem+2,1);
+	b_lin = zeros(2*N_elem+2,1);
 	b_lin(1) = -j*k;
-	b_lin(N_elem+2) = 1;
+	b_lin(2*N_elem+2) = 1;
 	%%%%%%%%%%%%%%%%%%%%%
 	% END LINEAR
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -143,7 +145,7 @@ for N_elem=1:N_elem_max
 	x_quad = A_quad\b_quad;
 	R_vect_quad(N_elem) = x_quad(2*N_elem+2);
 	x_lin = A_lin\b_lin;
-	R_vect_lin(N_elem) = x_lin(N_elem+2);
+	R_vect_lin(N_elem) = x_lin(2*N_elem+2);
 end
 
 % Analytical solution
@@ -161,10 +163,10 @@ end
 
 % figures
 figure(1); % error (LogLog)
-loglog(1:N_elem_max , err_quad, 'r', 'LineWidth', 2)
+loglog(2*(1:N_elem_max) , err_quad, 'r', 'LineWidth', 2)
 hold on;
-loglog(1:N_elem_max , err_lin, 'b', 'LineWidth', 2)
-xlabel('Number of elements')
+loglog(2*(1:N_elem_max) , err_lin, 'b', 'LineWidth', 2)
+xlabel('Degrees of freedom')
 ylabel('Relative Error')
 grid on;
 set(gca, 'xminorgrid', 'off');
@@ -173,11 +175,11 @@ legend('FEM Quad', 'FEM Lin')
 print('-dpng', 'convergence.png');
 
 figure(2); % R FEM & R ana (angle)
-plot(1:N_elem_max, angle(R_vect_quad)+(angle(R_vect_quad)<0)*2*pi, 'r+', 'LineWidth', 2);
+plot(2*(1:N_elem_max), angle(R_vect_quad)+(angle(R_vect_quad)<0)*2*pi, 'r+', 'LineWidth', 2);
 hold on;
-plot(1:N_elem_max, angle(R_vect_lin)+(angle(R_vect_lin)<0)*2*pi, 'b+', 'LineWidth', 2);
+plot(2*(1:N_elem_max), angle(R_vect_lin)+(angle(R_vect_lin)<0)*2*pi, 'b+', 'LineWidth', 2);
 plot([1 N_elem_max], [1 1]*angle(R_ana), 'k', 'LineWidth', 2);
-xlabel('Number of elements')
+xlabel('Degrees of freedom')
 ylabel('Phase of R')
 legend('FEM Quad', 'FEM Lin', 'Analytical')
 xlim([0 125])
@@ -186,10 +188,10 @@ print('-dpng', 'phase.png');
 
 figure(3);
 subplot(121); % error (LogLog)
-loglog(1:N_elem_max , err_quad, 'r', 'LineWidth', 2)
+loglog(2*(1:N_elem_max) , err_quad, 'r', 'LineWidth', 2)
 hold on;
-loglog(1:N_elem_max , err_lin, 'b', 'LineWidth', 2)
-xlabel('Number of elements')
+loglog(2*(1:N_elem_max) , err_lin, 'b', 'LineWidth', 2)
+xlabel('Degrees of freedom')
 ylabel('Relative Error')
 grid on;
 set(gca, 'xminorgrid', 'off');
@@ -197,11 +199,11 @@ set(gca, 'yminorgrid', 'off');
 legend('FEM Quad', 'FEM Lin')
 
 subplot(122); % R FEM & R ana (angle)
-plot(1:N_elem_max, angle(R_vect_quad)+(angle(R_vect_quad)<0)*2*pi, 'r+', 'LineWidth', 2);
+plot(2*(1:N_elem_max), angle(R_vect_quad)+(angle(R_vect_quad)<0)*2*pi, 'r+', 'LineWidth', 2);
 hold on;
-plot(1:N_elem_max, angle(R_vect_lin)+(angle(R_vect_lin)<0)*2*pi, 'b+', 'LineWidth', 2);
+plot(2*(1:N_elem_max), angle(R_vect_lin)+(angle(R_vect_lin)<0)*2*pi, 'b+', 'LineWidth', 2);
 plot([1 N_elem_max], [1 1]*angle(R_ana), 'k', 'LineWidth', 2);
-xlabel('Number of elements')
+xlabel('Degrees of freedom')
 ylabel('Phase of R')
 legend('FEM Quad', 'FEM Lin', 'Analytical')
 xlim([0 125])
