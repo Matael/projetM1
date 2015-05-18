@@ -22,7 +22,7 @@ clear all;
 close all;
 
 addpath('../hermite');
-DGM_1D_PW;
+new_dgm
 FEM_1D_hermite;
 
 p_test = real(p_test((1:Nddl_herm)*2-1))'; % FEM
