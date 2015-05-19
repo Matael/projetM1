@@ -37,7 +37,7 @@ L = 1;
 Zi = Zc/(j*tan(k*L));
 R_ana = (Zi-Zc)/(Zi+Zc);
 
-N_elem_max=300;
+N_elem_max=400;
 
 err = zeros(N_elem_max, 1);
 R_vect_ref = zeros(N_elem_max, 1);
@@ -47,43 +47,43 @@ err_R_test = zeros(N_elem_max, 1);
 
 for N_elem=1:N_elem_max
 	% Discretization
-	h = L/N_elem;
+	h = L/(2*N_elem);
 
 	% elementary matrices
 	M_elem = h/6*[2 1; 1 2];
 	K_elem = 1/h*[1 -1; -1 1];
 
 	% global matrices construction
-	M_global = sparse(N_elem+1,N_elem+1);
-	K_global = sparse(N_elem+1,N_elem+1);
+	M_global = sparse(2*N_elem+1,2*N_elem+1);
+	K_global = sparse(2*N_elem+1,2*N_elem+1);
 	for i=1:N_elem
 		M_global(i:i+1,i:i+1) = M_global(i:i+1,i:i+1) + M_elem;
 		K_global(i:i+1,i:i+1) = K_global(i:i+1,i:i+1) + K_elem;
 	end
 
 	% global matrix
-	A = sparse(N_elem+2,N_elem+2);
-	A(1:N_elem+1,1:N_elem+1) = k^2*M_global - K_global;
+	A = sparse(2*N_elem+2,2*N_elem+2);
+	A(1:2*N_elem+1,1:2*N_elem+1) = k^2*M_global - K_global;
 
-	A(N_elem+2,1) = 1;
-	A(N_elem+2,N_elem+2) = -1;
-	A(1,N_elem+2) = -j*k;
+	A(2*N_elem+2,1) = 1;
+	A(2*N_elem+2,2*N_elem+2) = -1;
+	A(1,2*N_elem+2) = -j*k;
 
-	b = zeros(N_elem+2,1);
+	b = zeros(2*N_elem+2,1);
 	b(1) = -j*k;
-	b(N_elem+2) = 1;
+	b(2*N_elem+2) = 1;
 
 	% resolution
 	x = A\b;
 
-	p_ref = x(1:N_elem+1);
-	R_vect_ref(N_elem) = x(N_elem+2);
+	p_ref = x(1:2*N_elem+1);
+	R_vect_ref(N_elem) = x(2*N_elem+2);
 
 	% with DGM like formulation
-	A = sparse(N_elem+1,N_elem+1);
+	A = sparse(2*N_elem+1,2*N_elem+1);
 	A = k^2*M_global - K_global;
 
-	b = zeros(N_elem+1,1);
+	b = zeros(2*N_elem+1,1);
 	b(1) = -j*k;
 	A(1,1) = A(1,1) - 0.5*(j*k-1/h);
 	A(1,2) = A(1,2) - 0.5/h;
@@ -96,10 +96,10 @@ for N_elem=1:N_elem_max
 	err_R_test(N_elem) = norm(angle(R_vect_test(N_elem))-angle(R_ana),2)/norm(angle(R_ana),2);
 end
 
-% figure;
-% plot(real(p_ref), '+r', 'LineWidth', 2);
-% hold on;
-% plot(real(p_test), 'ob', 'LineWidth', 2);
+figure;
+plot(real(p_ref), '+r', 'LineWidth', 2);
+hold on;
+plot(real(p_test), 'ob', 'LineWidth', 2);
 
 figure;
 loglog(1:N_elem_max, err, '+r', 'LineWidth', 2)

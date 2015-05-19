@@ -22,7 +22,7 @@
 %
 
 clear all;
-close all;
+% close all;
 
 % load utils
 addpath('../utils');
@@ -44,7 +44,7 @@ L = 1;
 Zi = Zc/(j*tan(k*L));
 R_ana = (Zi-Zc)/(Zi+Zc);
 
-N_elem_max=300;
+N_elem_max=200;
 
 err = zeros(N_elem_max, 1);
 R_vect_ref = zeros(N_elem_max, 1);

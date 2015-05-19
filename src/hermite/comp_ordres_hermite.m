@@ -44,7 +44,7 @@ L = 1;
 Zi = Zc/(j*tan(k*L));
 R_ana = (Zi-Zc)/(Zi+Zc);
 
-N_elem_max=100;
+N_elem_max=200;
 
 R_vect_ref = zeros(1,N_elem_max);
 R_vect_test = zeros(1,N_elem_max);

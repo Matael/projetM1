@@ -40,7 +40,7 @@ k = 2*pi*f/c;
 % geometrical
 L = 1;
 
-N_elem_max = 200;
+N_elem_max = 400;
 R_vect = zeros(N_elem_max,1);
 for N_elem=1:N_elem_max
 
