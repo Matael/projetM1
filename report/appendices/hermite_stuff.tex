@@ -1,0 +1,31 @@
+\chapter{Splines d'Hermite}
+\label{app:splines}
+
+Les fonctions utilisées pour l'interpolation par spline d'Hermite sont définies telles que\cite{WPSplines} :
+
+\begin{equation*}
+\left\{
+\begin{array}{l}
+	h_{00}(t) = 2t^3-3t^2+1 \\
+	h_{10}(t) = t^3-2t^2+t \\
+	h_{01}(t) = -2t^3+3t^2 \\
+	h_{11}(t) = t^3-t^2 \\
+\end{array}
+\right.
+\end{equation*}
+
+
+L'approximation sur le segment $(0,h)$ demande d'utiliser une version adaptée des polynômes :
+
+\begin{equation*}
+\left\{
+\begin{array}{l}
+	\H{00}(t) = 2\left(\nicefrac{t}{h}\right)^3-3\left(\nicefrac{t}{h}\right)^2+1 \\
+	\H{10}(t) = \left(\nicefrac{t}{h}\right)^3-2\left(\nicefrac{t}{h}\right)^2+\left(\nicefrac{t}{h}\right) \\
+	\H{01}(t) = -2\left(\nicefrac{t}{h}\right)^3+3\left(\nicefrac{t}{h}\right)^2 \\
+	\H{11}(t) = \left(\nicefrac{t}{h}\right)^3-\left(\nicefrac{t}{h}\right)^2 \\
+\end{array}
+\right.
+\end{equation*}
+
+

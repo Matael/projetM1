@@ -1,4 +1,4 @@
-\subsection{Problème 1D}
+\section{Problème 1D}
 
 Dans cette partie, l'objectif est d'exprimer le problème de la propagation acoustique dans une cavité unidimensionnelle
 en utilisant le formalisme "éléments finis".
@@ -11,7 +11,7 @@ Le schéma du problème est présenté en figure~\ref{fig:FEM:propa_1D}.
 	\caption{\label{fig:FEM:propa_1D}Schéma du problème de propagation dans une cavité acoustique 1D de longueur L.}
 \end{figure}
 
-\paragraph{Position du Problème}
+\subsection{Position du Problème}
 
 Les conditions aux limites en $x=0$ et $x=L$ imposent :
 
@@ -22,7 +22,7 @@ Les conditions aux limites en $x=0$ et $x=L$ imposent :
 	\end{array}\right. \label{FEM1D:BC}
 \end{equation}
 
-\subsubsection{Solution par éléments finis}
+\subsection{Solution par éléments finis}
 
 En se plaçant dans le formalisme éléments finis, il vient --- d'après~\eqref{FEM1D:final} :
 
@@ -33,10 +33,11 @@ En se plaçant dans le formalisme éléments finis, il vient --- d'après~\eqref
 En considérant la condition en limite en $x=L$, le second membre est simplifié :
 
 \begin{equation}
-	\left[- \uul{K} + k^2\uul{M}\right]\GP = \begin{Bmatrix} \nabla p\bigg|_0\\0\\\vdots\\0\end{Bmatrix}
+\left[- \uul{K} + k^2\uul{M}\right]\GP = \begin{Bmatrix} \nabla p\bigg|_0\\0\\\vdots\\0\end{Bmatrix}
+	\label{FEM1D:post_BCL}
 \end{equation}
 
-\paragraph{Prise en compte de l'excitation}
+\subsection{Prise en compte de l'excitation}
 
 Le problème est posé de sorte que l'entrée du résonateur est excitée par une onde plane se propageant vers les $x$
 croissants et que les interactions à l'interface produisent une onde plane réfléchie se propageant vers les $x$
@@ -115,7 +116,7 @@ La résolution se fait alors simplement sur un système de calcul matriciel :
 	\ul{X} = \uul{A}^{-1}\ul{b}
 \end{equation*}
 
-\subsubsection{Solution analytique}
+\subsection{Solution analytique}
 
 Afin d'apprécier la qualité de l'approximation par éléments finis, il est nécessaire de disposer d'une solution
 analytique. Le problème est ici posé de sorte que l'impédance en $x=L$ est connue (voir équation~\eqref{FEM1D:ana:ZL}).
@@ -147,7 +148,7 @@ En remplaçant~\eqref{FEM1D:ana:Zi} dans l'équation précédente :
 	R = \frac{Z_c}{j\tan(k*L)}\label{FEM1D:ana:R}
 \end{equation}
 
-\subsubsection{Convergence}
+\subsection{Convergence}
 
 La suite compare la phase du coefficient de réflexion analytique et celle du coefficient calculé par éléments
 finis. L'étude vise à la comparaison des courbes de convergence pour des éléments linéaires et quadratiques.

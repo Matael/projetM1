@@ -1,4 +1,4 @@
-\subsection{Fonctions d'interpolation classiques}
+\section{Fonctions d'interpolation classiques}
 
 La précision et l'efficacité de la méthode des éléments finis repose grandement sur le choix judicieux des fonctions de
 forme $\phi$.
@@ -11,7 +11,7 @@ mais bien le nombre de degrés de liberté\footnote{Points où sont calculées l
 l'interpolation.}. En effet, le concept derrière l'interpolation avec des polynômes est toujours le même : pour un
 polynôme de degré $N$, il faut $N+1$ point.
 
-\subsubsection{Éléments Linéaires}
+\subsection{Éléments Linéaires}
 
 La première interpolation possible utilise des fonctions affines. L'idée est alors d'écrire :
 
@@ -34,7 +34,7 @@ Pour un élément de longueur $h$, les expressions des fonctions de forme linéa
 \end{equation*}
 
 
-\subsubsection{Éléments quadratiques}
+\subsection{Éléments quadratiques}
 
 Une deuxième possibilité est d'utiliser une interpolation quadratique (polynôme de degré 2). Pour ce faire, en plus des
 deux points précédement considérés, il faudra en utiliser un troisième situé au centre de l'élément. Les fonctions de
@@ -58,7 +58,7 @@ interpolateur de Lagrange. Les graphes sont présentés en figure~\ref{fig:FEM:s
 
 Avec 3 fonctions d'interpolation, les matrices élémentaires seront de taille 3 (comportant ainsi 9 éléments).
 
-\subsubsection{Note sur l'implémentation}
+\subsection{Note sur l'implémentation}
 
 La méthode des éléments finis fait appel aux intégrales des produits de fonction de forme.
 

@@ -156,24 +156,30 @@
 \setcounter{page}{1}
 \input{introduction.tex}
 
-\part{Fondamentaux}
-\input{part1/FEM/general.tex}
-\input{part1/FEM/interp.tex}
-\input{part1/FEM/cas1D.tex}
-\input{part1/DGM/general.tex}
-\input{part1/DGM/discretisation.tex}
-\input{part1/DGM/cas1D.tex}
+\part{Méthode des Éléments finis}
+\label{part:fem}
+\setcounter{section}{0}
+\input{part1/general.tex}
+\input{part1/interp.tex}
+\input{part1/cas1D.tex}
 
-\part{Le rapprochement}
-\input{part2/boundary_cond.tex}
-\input{part2/caracteristiques.tex}
-\input{part2/hermite.tex}
-\input{part2/rapport_DGM.tex}
+\part{Méthode de Galerkin Discontinue avec Ondes Planes}
+\label{part:dgm}
+\setcounter{section}{0}
+\input{part2/general.tex}
+\input{part2/discretisation.tex}
+\input{part2/cas1D.tex}
 
-\part{Couplage}
-\input{part3/FEM_POV.tex}
-\input{part3/DGM_POV.tex}
-\input{part3/convergence.tex}
+\part{Couplage -- Caractéristiques et Conditions aux Limites}
+\label{part:couplage}
+\setcounter{section}{0}
+\input{part3/boundary_cond.tex}
+
+\part{Amélioration de la convergence}
+\label{part:convergence}
+\setcounter{section}{0}
+\input{part4/hermite.tex}
+\input{part4/convergence.tex}
 
 \newpage
 \input{conclusion.tex}
@@ -184,5 +190,7 @@
 \bibliography{biblio}
 
 \appendix
+
+\input{appendices/hermite_stuff.tex}
 
 \end{document}

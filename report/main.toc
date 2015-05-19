@@ -1,30 +1,33 @@
 \select@language {french}
-\contentsline {part}{I\hspace {1em}Fondamentaux}{2}
-\contentsline {section}{\numberline {I.}M\IeC {\'e}thode des \IeC {\'e}l\IeC {\'e}ments finis}{3}
-\contentsline {subsection}{\numberline {A)}G\IeC {\'e}n\IeC {\'e}ralit\IeC {\'e}s}{3}
-\contentsline {paragraph}{\numberline {}Formulation Variationnelle}{3}
-\contentsline {paragraph}{\numberline {}Fonctions de forme}{3}
-\contentsline {paragraph}{\numberline {}Matrices Bool\IeC {\'e}ennes et Vecteurs Globaux}{4}
-\contentsline {subsection}{\numberline {B)}Fonctions d'interpolation classiques}{5}
-\contentsline {subsubsection}{\numberline {1.}\IeC {\'E}l\IeC {\'e}ments Lin\IeC {\'e}aires}{5}
-\contentsline {subsubsection}{\numberline {2.}\IeC {\'E}l\IeC {\'e}ments quadratiques}{5}
-\contentsline {subsubsection}{\numberline {3.}Note sur l'impl\IeC {\'e}mentation}{6}
-\contentsline {subsection}{\numberline {C)}Probl\IeC {\`e}me 1D}{6}
-\contentsline {paragraph}{\numberline {}Position du Probl\IeC {\`e}me}{7}
-\contentsline {subsubsection}{\numberline {1.}Solution par \IeC {\'e}l\IeC {\'e}ments finis}{7}
-\contentsline {paragraph}{\numberline {}Prise en compte de l'excitation}{7}
-\contentsline {subsubsection}{\numberline {2.}Solution analytique}{8}
-\contentsline {subsubsection}{\numberline {3.}Convergence}{9}
-\contentsline {section}{\numberline {II.}M\IeC {\'e}thode de Galerkin discontinue avec ondes planes}{10}
-\contentsline {subsection}{\numberline {A)}G\IeC {\'e}n\IeC {\'e}ralit\IeC {\'e}s}{10}
-\contentsline {subsection}{\numberline {B)}Discr\IeC {\'e}tisation des champs}{10}
-\contentsline {subsection}{\numberline {C)}Probl\IeC {\`e}me 1D}{10}
-\contentsline {part}{II\hspace {1em}Le rapprochement}{11}
-\contentsline {section}{\numberline {III.}Retour sur les conditions aux limites en MEF}{12}
-\contentsline {subsection}{\numberline {A)}M\IeC {\'e}thode des caract\IeC {\'e}ristiques}{12}
-\contentsline {subsection}{\numberline {B)}\IeC {\'E}tude de convergence : splines cubiques}{12}
-\contentsline {section}{\numberline {IV.}Rapport avec la MGD}{12}
-\contentsline {part}{III\hspace {1em}Couplage}{13}
-\contentsline {section}{\numberline {V.}Du point de vue des \IeC {\'e}l\IeC {\'e}ments finis}{14}
-\contentsline {section}{\numberline {VI.}Du point de vue de Galerkin}{14}
-\contentsline {section}{\numberline {VII.}Etude de convergence}{14}
+\contentsline {part}{I\hspace {1em}M\IeC {\'e}thode des \IeC {\'E}l\IeC {\'e}ments finis}{2}
+\contentsline {section}{\numberline {I.}G\IeC {\'e}n\IeC {\'e}ralit\IeC {\'e}s}{3}
+\contentsline {subsection}{\numberline {A)}Formulation Variationnelle}{3}
+\contentsline {subsection}{\numberline {B)}Fonctions de forme}{3}
+\contentsline {subsection}{\numberline {C)}Matrices Bool\IeC {\'e}ennes et Vecteurs Globaux}{4}
+\contentsline {section}{\numberline {II.}Fonctions d'interpolation classiques}{5}
+\contentsline {subsection}{\numberline {A)}\IeC {\'E}l\IeC {\'e}ments Lin\IeC {\'e}aires}{5}
+\contentsline {subsection}{\numberline {B)}\IeC {\'E}l\IeC {\'e}ments quadratiques}{5}
+\contentsline {subsection}{\numberline {C)}Note sur l'impl\IeC {\'e}mentation}{6}
+\contentsline {section}{\numberline {III.}Probl\IeC {\`e}me 1D}{6}
+\contentsline {subsection}{\numberline {A)}Position du Probl\IeC {\`e}me}{7}
+\contentsline {subsection}{\numberline {B)}Solution par \IeC {\'e}l\IeC {\'e}ments finis}{7}
+\contentsline {subsection}{\numberline {C)}Prise en compte de l'excitation}{7}
+\contentsline {subsection}{\numberline {D)}Solution analytique}{8}
+\contentsline {subsection}{\numberline {E)}Convergence}{9}
+\contentsline {part}{II\hspace {1em}M\IeC {\'e}thode de Galerkin Discontinue avec Ondes Planes}{11}
+\contentsline {section}{\numberline {I.}G\IeC {\'e}n\IeC {\'e}ralit\IeC {\'e}s}{12}
+\contentsline {section}{\numberline {II.}Discr\IeC {\'e}tisation des champs}{12}
+\contentsline {section}{\numberline {III.}Probl\IeC {\`e}me 1D}{12}
+\contentsline {part}{III\hspace {1em}Couplage -- Caract\IeC {\'e}ristiques et Conditions aux Limites}{13}
+\contentsline {section}{\numberline {I.}Retour sur les conditions aux limites en MEF}{14}
+\contentsline {subsection}{\numberline {A)}Utilisation de la formulation de Galerkin}{14}
+\contentsline {subsection}{\numberline {B)}Condition en $x=0$}{14}
+\contentsline {subsection}{\numberline {C)}Interpolation des caract\IeC {\'e}ristiques}{15}
+\contentsline {paragraph}{\numberline {}Nota Bene}{15}
+\contentsline {subsection}{\numberline {D)}Influence sur la convergence}{16}
+\contentsline {part}{IV\hspace {1em}Am\IeC {\'e}lioration de la convergence}{17}
+\contentsline {section}{\numberline {I.}Une nouvelle interpolation : les splines d'Hermite}{18}
+\contentsline {subsection}{\numberline {A)}Formulation classique}{18}
+\contentsline {subsection}{\numberline {B)}M\IeC {\'e}thode des caract\IeC {\'e}ristiques}{18}
+\contentsline {section}{\numberline {II.}Etude de convergence}{19}
+\contentsline {chapter}{\numberline {A}Splines d'Hermite}{22}

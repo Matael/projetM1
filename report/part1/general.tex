@@ -1,11 +1,9 @@
-\section{Méthode des éléments finis}
-
 \todo[inline]{intro FEM}
 
-\subsection{Généralités}
+\section{Généralités}
 \label{FEM1D:subsection:linear}
 
-\paragraph{Formulation Variationnelle}
+\subsection{Formulation Variationnelle}
 
 Le problème est régi par l'équation d'Helmholtz sans source telle que présentée en~\eqref{FEM1D:helm} (avec $k =
 \nicefrac{\omega}{c}$ le nombre d'onde, $c$ la célérité du son dans le milieu, et $\omega$ la pulsation).
@@ -22,7 +20,7 @@ parties, le problème s'exprime comme en~\eqref{FEM1D:IPP}.
 	- \int_\Omega \nabla p~\nabla \DP ~\dd\Omega + k^2\int_\Omega p~\DP~\dd\Omega & = & -\int_{\partial\Omega}\nabla p~\DP\dd\Gamma, \quad \forall\DP \label{FEM1D:IPP}
 \end{eqnarray}
 
-\paragraph{Fonctions de forme}
+\subsection{Fonctions de forme}
 
 Supposant que les champs $p$ et $\DP$ sur un intervale $[x_i, x_j]$ sont décomposables en une combinaison linéaire de
 fonctions $\phi_k$ (dites fonctions de forme) assorties des valeurs du champs à des points particuliers $x_k$ du domaine, il
@@ -88,7 +86,7 @@ Avec :
 Et de même pour $\uul{K}_e$ en considérant les dérivées $(\phi'_1,\ldots,\phi'_N)$ des fonctions de forme plutôt que les
 fonctions elles-mêmes. Ces matrices sont appelées matrices élémentaires.
 
-\paragraph{Matrices Booléennes et Vecteurs Globaux}
+\subsection{Matrices Booléennes et Vecteurs Globaux}
 \newcommand{\GP}{\ul{\mathbb{P}}}
 \newcommand{\GDP}{\ul{\delta\mathbb{P}}}
 L'objectif est maitenant d'exprimer l'intérieur de la somme en fonction non plus des extrémités de l'éléments en cours
