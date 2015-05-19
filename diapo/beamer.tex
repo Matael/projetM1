@@ -1,0 +1,47 @@
+\documentclass[10pt, compress]{beamer}
+
+\usetheme[usetitleprogressbar]{m}
+
+\usepackage{booktabs}
+
+
+\title{Couplage FEM/DGM}
+\subtitle{Analyse des méthodes et proposition de couplage}
+\date{Année 2014-2015}
+\author{Mathieu Gaborit}
+\institute{Université du Maine}
+
+\begin{document}
+
+\maketitle
+
+\begin{frame}[fragile]
+    \frametitle{Introduction}
+
+    \begin{itemize}
+        \item Méthodes numériques : enjeu majeur pour la simulation de systèmes complexes
+        \item Grande diversité dans les méthodes disponibles
+        \item Fortes spécificités pour chaque méthode
+        \item Méthodes classiques : FEM, DGM, etc...
+    \end{itemize}
+
+    \pause
+    \begin{center}
+        \alert{\textbf{Comment combiner deux méthodes pour profiter des avantages de tous leurs avantages ?}}
+    \end{center}
+\end{frame}
+
+\begin{frame}
+    \frametitle{References}
+
+    \begin{itemize}
+        \item \textbf{A discontinuous Galerkin Method with Plane Waves for Sound Absorbing Materials}, \textit{Int. J.
+            Numer. Engng}, G. Gabard, O.  Dazel
+        \item \textbf{A comparison of wave-based discontinuous Galerkin, ultra-week and least-square method for wave
+            problems}, \textit{Int. J.
+            Numer. Engng}, G. Gabard, P. Gamallo, T. Huttunen
+        \item \textbf{Analyse Numérique : une approche mathématique}, M. Schatzman
+    \end{itemize}
+\end{frame}
+
+\end{document}

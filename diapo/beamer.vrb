@@ -1,0 +1,13 @@
+\frametitle{Introduction}
+
+    \begin{itemize}
+        \item Méthodes numériques : enjeu majeur pour la simulation de systèmes complexes
+        \item Grande diversité dans les méthodes disponibles
+        \item Fortes spécificités pour chaque méthode
+        \item Méthodes classiques : FEM, DGM, etc...
+    \end{itemize}
+
+    \pause
+    \begin{center}
+        \alert{\textbf{Comment combiner deux méthodes pour profiter des avantages de tous leurs avantages ?}}
+    \end{center}
