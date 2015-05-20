@@ -1,1 +1,38 @@
 \section*{Introduction}
+
+À mesure que la puissance des ordinateurs explose et que la science avance, les méthodes numériques représentent un
+enjeu de plus en plus important. L'Homme a toujours cherché à comprendre le monde de la manière la plus précise
+possible, mais aujourd'hui, la complexité des problèmes engagés est telle que les solutions analytiques sont parfois
+impossibles à déterminer en un temps fini.
+
+Après des années de recherche, de plus en plus de méthodes ont vu le jour pour pallier ce manque et ce dans quasiment
+tous les domaines scientifiques. Depuis les méthodes spectrales jusqu'aux algorithmes évolutifs, la science moderne est
+avide de méthodes d'approximation et d'automatisation efficaces et celles-ci sont en constant développement.
+
+Connues depuis des décennies, les méthodes visant à discrétiser le milieu de travail ou le temps sont un des cas
+d'études classiques, la méthode des éléments finis (FEM) en fait partie. Pourquoi ne pas résoudre plein de petits problèmes
+simples plutôt qu'un unique problème complexe ? La discrétisation des variables n'est toutefois pas l'unique solution
+envisageable...
+
+Découvertes au début du XX\textsuperscript{ème} siècle, les méthodes de Galerkin suivent, elles, un autre chemin vers le
+problème discret : en plus d'une discrétisation en espace, elles proposent aussi de chercher la solution du problème
+sous la forme d'une somme de fonctions plus simples. Améliorées dans les années 1970 en méthodes de Galerkin
+discontinues (DGM), elles permettent alors la résolution d'équations aux dérivées partielles (EDP).
+
+Ces deux méthodes sont classiques et bien connues des chercheurs, elles sont toutefois leurs spécificités quant aux
+problèmes qu'elles permettent de résoudre de manière consistante.
+
+\bigskip
+
+L'objectif de ce projet est de s'intéresser au couplage entre la FEM et la DGM en se basant sur la réécrire des
+conditions limites de la FEM.
+
+Dans un premier temps, les deux méthodes sont succintement présentées et un exemple d'utilisation est proposé.
+Dans un second temps, la possibilité de ré-écriture des conditions aux limites du domaine FEM est analysée et une
+nouvelle formulation basée sur le parallèlisme avec les caractéristiques utilisées dans la DGM avec ondes planes est
+proposée. Une réflexion sur la convergence de cette méthode modifiée amène ensuite à considérer la dernière partie de ce
+rapport. Afin de rendre la méthode proposée réellement intéressante, une nouvelle base de fonctions d'interpolation pour
+les champs FEM est introduite et son influence sur la convergence est analysée.
+
+
+
