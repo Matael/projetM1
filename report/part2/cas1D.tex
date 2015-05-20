@@ -1,1 +1,87 @@
 \section{Problème 1D}
+
+En repartant de~\eqref{dgm:to_solve} et en considérant un problème 1D (voir figure~\ref{fig:FEM:propa_1D}), il vient :
+
+\begin{equation}
+    \int_{\partial\Omega}\ul{v}^T\uul{A}\ul{u}\dd\Gamma = 0 \Leftrightarrow
+\underbrace{\ul{v}^T(L)\uul{A}\ul{u}(L)}_\mathrm{droite} - \underbrace{\ul{v}^T(0)\uul{A}\ul{u}(0)}_\mathrm{gauche}
+\quad,\quad \forall\ul{v}\label{dgm:d_g}
+\end{equation}
+
+\subsection{Condition limite à droite}
+
+A droite, la paroi rigide implique :
+
+\begin{eqnarray*}
+    v(L) = 0 & \Leftrightarrow &
+    \begin{pmatrix}
+        1 & 0
+    \end{pmatrix}
+    \begin{pmatrix}
+        v\\p
+    \end{pmatrix}
+     = 0\\
+    & \Leftrightarrow &
+    \begin{pmatrix}
+        1 & 0
+    \end{pmatrix}
+    \begin{bmatrix}
+        1 & 1\\
+        Z_0 & -Z_0
+    \end{bmatrix}
+    \begin{pmatrix}
+        \tilde{u}^+\\\tilde{u}^-
+    \end{pmatrix}\\
+    & \Leftrightarrow &
+    \tilde{u}^+ = -\tilde{u}^- \Leftrightarrow \tilde{u}^+ = R^-\tilde{u}^-
+\end{eqnarray*}
+
+En utilisant maintenant~\eqref{dgm:sep_u}, et en réutilisant le résultat précédent :
+
+\begin{eqnarray}
+    \ul{u} = \ul{P}^+\tilde{u}^+ + \ul{P}^-\tilde{u}^-
+        & \Leftrightarrow & \ul{u} = \ul{P}^+\tilde{u}^+ + \ul{P}^-R^-\tilde{u}^+\notag\\
+        & \Leftrightarrow & \ul{u} = \left(\ul{P}^+ + \ul{P}^-R^-\right)\ul{Q}^+u\label{dgm:droite}
+\end{eqnarray}
+
+\subsection{Condition limite à gauche}
+
+A gauche, les conditions de continuité impliquent :
+
+\begin{figure}[!ht]
+	\centering
+	\input{part4/figs/interface.tex}
+    \caption{\label{fig:interface}Interface à gauche du problème.}
+\end{figure}
+
+\begin{equation*}
+    \begin{array}{c}
+        P\begin{Bmatrix}1\\R\end{Bmatrix} = P\begin{Bmatrix}\tilde{u}^+\\\tilde{u}^-\end{Bmatrix}\\
+            \Leftrightarrow \left\{\begin{array}{l}
+                    \tilde{u}^+ = 1\\
+                    \tilde{u}^- = R = \ul{Q}^-\ul{u}
+            \end{array}\right.
+    \end{array}
+\end{equation*}
+
+En ré-exprimant $u$, il vient :
+
+\begin{equation}
+    \ul{u} = \ul{P}^+\tilde{u}^+ + \ul{P}^-\tilde{u}^- \Leftrightarrow \ul{u} = \ul{P}^+ + \ul{P}^-\ul{Q}^-\ul{u}\label{dgm:gauche}
+\end{equation}
+
+En remettant~\eqref{dgm:droite} et~\eqref{dgm:gauche} dans~\eqref{dgm:d_g} et en utilisant les expressions discrétisées
+des champs, il vient :
+
+\begin{equation}
+    \begin{array}{rcl}
+        \GV^T\bigg[\uul{U}_v^T(L)\uul{P\Lambda Q}\left(\ul{P}^+ + \ul{P}^-R^-\right)\ul{Q}^+\uul{U}_u(L) & - &
+    \uul{U}_u(0)\uul{P\Lambda Q}\ul{P}^-\ul{Q}^-\uul{U}_u(0)\bigg] \GU\\
+    & = & - \GV^T\uul{U}_v^T(0)\uul{P\Lambda Q}\ul{P}^+ \quad,\quad \forall\GV
+    \end{array}
+\end{equation}
+
+L'équation précédente étant valable pour tout vecteur $\GV$ il est possible de supprimer ce terme.
+La solution pour $\GU$ est alors calculable par simple division matricielle.
+
+

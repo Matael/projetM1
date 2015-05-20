@@ -1,1 +1,66 @@
 \section{Discrétisation des champs}
+
+Le choix des fonctions test est un enjeu prépondérant dans la méthode de Galerkin discontinue.
+La suite cherche à discrétiser les champs de tests \textit{via} une base d'ondes planes, comme proposé par Gabard
+\textit{et al.}\cite{Gabard15}.
+
+Les expressions des champs discrétisés sont tirées directement de la résolution des équations
+différentielles~\eqref{dgm:eq_u} et~\eqref{eq_v}. Il faut noter que le problème à résoudre pour $\ul{v}$ est l'adjoint
+de celui à résoudre pour $\ul{u}$ (la matrice $\uul{A}$ n'étant pas symétrique).
+
+Les solutions recherchés sont donc composées d'une somme d'ondes planes :
+
+\[
+    \xi(x) = \xi_+e^{-jkx}+\xi_-e^{+jkx}
+\]
+
+La solution pour $\ul{u}$ est donc de la forme :
+
+\begin{equation}
+    \ul{u} = \begin{Bmatrix}v\\p\end{Bmatrix} =
+    \begin{bmatrix}
+        \nicefrac{1}{Z_0} & -\nicefrac{1}{Z_0}\\
+        1 & 1
+    \end{bmatrix}
+    \begin{bmatrix}
+        e^{-jkx} & 0\\
+        0 & e^{+jkx}
+    \end{bmatrix}
+    \begin{Bmatrix}
+        A\\B
+    \end{Bmatrix}
+    =
+    \underbrace{\begin{bmatrix}
+        \nicefrac{e^{-jkx}}{Z_0} & -\nicefrac{e^{+jkx}}{Z_0}\\
+        e^{-jkx} & e^{+jkx}
+    \end{bmatrix}}_{\uul{U}_u(x)}
+    \underbrace{\begin{Bmatrix}
+        A\\B
+    \end{Bmatrix}}_{\GU}
+\end{equation}
+
+Le champ de test $\ul{v}$ est solution du problème adjoint, la solution pour $\ul{v}$ est donc de la forme
+
+\begin{equation}
+    \ul{v} =
+    \begin{bmatrix}
+        Z_0 & -Z_0\\
+        1 & 1
+    \end{bmatrix}
+    \begin{bmatrix}
+        e^{-jkx} & 0\\
+        0 & e^{+jkx}
+    \end{bmatrix}
+    \begin{Bmatrix}
+        \delta A\\\delta B
+    \end{Bmatrix}
+    =
+    \underbrace{
+    \begin{bmatrix}
+        Z_0e^{-jkx} & -Z_0e^{+jkx}\\
+        e^{-jkx} & e^{+jkx}
+    \end{bmatrix}}_{\uul{U}_v(x)}
+    \underbrace{\begin{Bmatrix}
+        \delta A\\\delta B
+    \end{Bmatrix}}_{\GV}
+\end{equation}

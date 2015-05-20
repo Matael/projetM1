@@ -1,4 +1,84 @@
 
-% ...
+% TODO intro galerkin
 
 \section{Généralités}
+
+Soit un milieu de propagation où sont valable les équations suivantes :
+
+\begin{eqnarray}
+    \left\{\begin{array}{l}
+        j\omega\rho v = -\nabla p\\
+        p = -\rho c^2 \nabla u
+    \end{array}\right.
+    & \Leftrightarrow &
+    \left\{\begin{array}{l}
+        j\omega\rho v = -\nabla p\\
+        j\omega p = -\rho c^2 \nabla v
+    \end{array}\right.
+    \notag\\ & \Leftrightarrow &
+    j\omega \begin{Bmatrix}v\\p\end{Bmatrix} + 
+    \begin{bmatrix}
+        0 & \nicefrac{1}{\rho}\\
+        \rho c^2 & 0
+    \end{bmatrix}
+    \nabla \begin{Bmatrix}v\\p\end{Bmatrix} = 0
+    \notag\\ & \Leftrightarrow &
+        \left(j\omega + \uul{A}\frac{\partial}{\partial x}\right) \ul{u} = 0 \label{dgm:eq_u}
+\end{eqnarray}
+
+L'idée est alors de découpler les équations précédentes en diagonalisant $\uul{A}$, il vient :
+
+\begin{equation*}
+    \uul{A} = \uul{P\Lambda Q} \quad,\quad \uul{P} = \uul{Q}^{-1}
+\end{equation*}
+
+En posant
+
+\begin{equation}
+    \ul{\tilde{u}} = \begin{Bmatrix}\tilde{u}^+\\\tilde{u}^-\end{Bmatrix} = \ul{Q}\ul{u}\label{dgm:utilde}
+\end{equation}
+l'équation~\eqref{dgm:eq_u} devient :
+
+\begin{equation*}
+    j\omega \ul{\tilde{u}} + \uul{\Lambda}\nabla\ul{\tilde{u}} = 0
+\end{equation*}
+
+En isolant les valeurs positives et négatives de $\uul{\Lambda}$  (notées $\Lambda^{+,-}$) ainsi que les vecteurs
+associés $\ul{P}^{+,-}$ et $\ul{Q}^{+,-}$, il est possible d'écrire :
+
+\begin{equation}
+    \left\{\begin{array}{l}
+        \tilde{u}^+ = \ul{Q}^+\ul{u}\\
+        \tilde{u}^- = \ul{Q}^-\ul{u}
+    \end{array}\right. \Leftrightarrow
+    \ul{u} = \ul{P}^+\tilde{u} + \ul{P}^-\tilde{u} \label{dgm:sep_u}
+\end{equation}
+
+
+\paragraph{Formulation variationnelle}
+
+En utilisant la formulation variationnelle et une intégration par parties, il vient :
+
+\begin{equation}
+    \begin{array}{c}
+    \int_\Omega \ul{v}^T\left(j\omega + \uul{F}\nabla\right)\ul{u}\dd\Omega = 0 \quad,\quad \forall\ul{v}\\
+    -\left(\int_\Omega j\omega v + \uul{A}^T\nabla\ul{v}\right)^Tu\dd\Omega +
+        \int_{\partial\Omega}\ul{v}^T\uul{A}\ul{u}\dd\Gamma = 0 \quad,\quad \forall\ul{v}
+    \end{array}
+    \label{dgm:post_ipp}
+\end{equation}
+
+\paragraph{Nota Bene} Le symbole $\cdot^T$ représente une transposition Hermitienne.
+
+L'objectif est alors de choisir le champ de test $\ul{v}$ permettant d'annuler l'intégrale sur $\Omega$ :
+
+\begin{equation}
+    \left(j\omega + \uul{A}^T\nabla\right)\ul{v} = 0 \label{dgm:eq_v}
+\end{equation}
+
+De toute l'équation~\eqref{dgm:post_ipp}, il reste alors :
+
+\begin{equation}
+    \int_{\partial\Omega}\ul{v}^T\uul{A}\ul{u}\dd\Gamma = 0 \quad,\quad \forall\ul{v}\label{dgm:to_solve}
+\end{equation}
+

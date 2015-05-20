@@ -1,4 +1,3 @@
-\select@language {french}
 \contentsline {part}{I\hspace {1em}M\IeC {\'e}thode des \IeC {\'E}l\IeC {\'e}ments finis}{2}
 \contentsline {section}{\numberline {I.}G\IeC {\'e}n\IeC {\'e}ralit\IeC {\'e}s}{3}
 \contentsline {subsection}{\numberline {A)}Formulation Variationnelle}{3}
@@ -16,18 +15,24 @@
 \contentsline {subsection}{\numberline {E)}Convergence}{9}
 \contentsline {part}{II\hspace {1em}M\IeC {\'e}thode de Galerkin Discontinue avec Ondes Planes}{11}
 \contentsline {section}{\numberline {I.}G\IeC {\'e}n\IeC {\'e}ralit\IeC {\'e}s}{12}
-\contentsline {section}{\numberline {II.}Discr\IeC {\'e}tisation des champs}{12}
-\contentsline {section}{\numberline {III.}Probl\IeC {\`e}me 1D}{12}
-\contentsline {part}{III\hspace {1em}Couplage -- Caract\IeC {\'e}ristiques et Conditions aux Limites}{13}
-\contentsline {section}{\numberline {I.}Retour sur les conditions aux limites en MEF}{14}
-\contentsline {subsection}{\numberline {A)}Utilisation de la formulation de Galerkin}{14}
-\contentsline {subsection}{\numberline {B)}Condition en $x=0$}{14}
-\contentsline {subsection}{\numberline {C)}Interpolation des caract\IeC {\'e}ristiques}{15}
-\contentsline {paragraph}{\numberline {}Nota Bene}{15}
-\contentsline {subsection}{\numberline {D)}Influence sur la convergence}{16}
-\contentsline {part}{IV\hspace {1em}Am\IeC {\'e}lioration de la convergence}{17}
-\contentsline {section}{\numberline {I.}Une nouvelle interpolation : les splines d'Hermite}{18}
-\contentsline {subsection}{\numberline {A)}Formulation classique}{18}
-\contentsline {subsection}{\numberline {B)}M\IeC {\'e}thode des caract\IeC {\'e}ristiques}{18}
-\contentsline {section}{\numberline {II.}Etude de convergence}{19}
-\contentsline {chapter}{\numberline {A}Splines d'Hermite}{22}
+\contentsline {paragraph}{\numberline {}Formulation variationnelle}{12}
+\contentsline {paragraph}{\numberline {}Nota Bene}{12}
+\contentsline {section}{\numberline {II.}Discr\IeC {\'e}tisation des champs}{13}
+\contentsline {section}{\numberline {III.}Probl\IeC {\`e}me 1D}{13}
+\contentsline {subsection}{\numberline {A)}Condition limite \IeC {\`a} droite}{13}
+\contentsline {subsection}{\numberline {B)}Condition limite \IeC {\`a} gauche}{14}
+\contentsline {part}{III\hspace {1em}Couplage -- Caract\IeC {\'e}ristiques et Conditions aux Limites}{15}
+\contentsline {section}{\numberline {I.}Retour sur les conditions aux limites en MEF}{16}
+\contentsline {subsection}{\numberline {A)}Utilisation de la formulation de Galerkin}{16}
+\contentsline {subsection}{\numberline {B)}Condition en $x=0$}{16}
+\contentsline {subsection}{\numberline {C)}Interpolation des caract\IeC {\'e}ristiques}{17}
+\contentsline {paragraph}{\numberline {}Nota Bene}{17}
+\contentsline {subsection}{\numberline {D)}Influence sur la convergence}{18}
+\contentsline {part}{IV\hspace {1em}Am\IeC {\'e}lioration de la convergence}{19}
+\contentsline {section}{\numberline {I.}Une nouvelle interpolation : les splines d'Hermite}{20}
+\contentsline {subsection}{\numberline {A)}Formulation classique}{20}
+\contentsline {subsection}{\numberline {B)}M\IeC {\'e}thode des caract\IeC {\'e}ristiques}{20}
+\contentsline {section}{\numberline {II.}Etude de convergence}{21}
+\contentsline {paragraph}{\numberline {}Entre \IeC {\'e}l\IeC {\'e}ments quadratiques et splines d'Hermite}{22}
+\contentsline {paragraph}{\numberline {}Entre m\IeC {\'e}thode classique et m\IeC {\'e}thode par caract\IeC {\'e}ristiques}{22}
+\contentsline {chapter}{\numberline {A}Splines d'Hermite}{25}
