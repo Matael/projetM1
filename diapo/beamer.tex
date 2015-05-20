@@ -3,7 +3,10 @@
 \usetheme[usetitleprogressbar]{m}
 
 \usepackage{booktabs}
-
+\usepackage{amsmath}
+\usepackage{nicefrac}
+\input{../report/typesetting.tex}
+\newcommand\GP{\mathbb{P}}
 
 \title{Couplage FEM/DGM}
 \subtitle{Analyse des méthodes et proposition de couplage}
@@ -27,8 +30,256 @@
 
     \pause
     \begin{center}
-        \alert{\textbf{Comment combiner deux méthodes pour profiter des avantages de tous leurs avantages ?}}
+        \alert{\textbf{Comment combiner deux méthodes pour profiter d'un maximum d'avantages ?}}
     \end{center}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Au menu}
+	\tableofcontents
+\end{frame}
+
+\section{Problème de référence}
+
+\begin{frame}
+	\frametitle{Problème de référence}
+	\begin{center}
+		\input{propa_1D.tex}
+	\end{center}
+
+	\begin{block}{Hypothèses}
+		\begin{itemize}
+			\item Propagation 1D
+			\item Convention temporelle $e^{j\omega t}$
+			\item Paroi en $x=L$ infiniment rigide
+			\item Entrée excitée par une onde plane d'amplitude unitaire
+			\item Effets visco-thermiques négligés
+			\item $err = \nicefrac{\left|\arg(R) - \arg(\hat{R})\right|^2}{\left|\arg(R)\right|^2}$
+		\end{itemize}
+	\end{block}
+\end{frame}
+
+\section{Méthodes}
+
+\begin{frame}
+	\frametitle{Méthode des éléments finis}
+
+	$$\left(k^2[M] - [K]\right)\GP = \int_{\partial\Omega} v\nabla p\mathrm{d}\Gamma$$
+
+	\begin{block}{Généralités}
+		\begin{itemize}
+			\item Formulation variationnelle de l'équation d'Helmholtz
+			\item Utilisation d'un maillage non-structuré
+			\item Bonne modélisation de systèmes détaillés
+		\end{itemize}
+	\end{block}
+	\pause
+	\begin{block}{Limites}
+		\begin{itemize}
+			\item Augmentation du temps de calcul avec le nombre d'éléments
+			\item Nécessité d'au moins 2 éléments par longueur d'onde
+		\end{itemize}
+	\end{block}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Méthode des éléments finis}
+
+	\begin{block}{Influence du type d'éléments}
+		\begin{center}
+		\includegraphics[width=0.6\textwidth]{../report/part1/figs/FEM/simuls_1D/convergence.png}
+		\end{center}
+	\end{block}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Méthode de Galerkin Discontinue avec ondes planes}
+
+	$$\int_\Omega \vec{v}^T\left(j\omega + A\nabla\right)\vec{u}\mathrm{d}\Gamma = 0$$
+
+	\begin{block}{Généralités}
+		\begin{itemize}
+			\item Basée sur la formulation variationnelle de l'équation d'Helmholtz
+			\item Utilisation des caractéristiques de l'EDP comme champ de test (Gabard/Dazel'15)
+			\item Possibilité d'utiliser de grands éléments
+		\end{itemize}
+	\end{block}
+	\begin{block}{Limites}
+		\begin{itemize}
+			\item Quasi-insensible aux petits détails
+			\item Incompatibles avec (ou mal adaptés à) certains problèmes
+		\end{itemize}
+	\end{block}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Méthode de Galerkin Discontinue avec ondes planes}
+
+	\begin{block}{Solution exacte en 1D...}
+		\begin{center}
+		\includegraphics[width=0.7\textwidth]{comp_hermiteFEM_dgm.png}
+		\end{center}
+	\end{block}
+\end{frame}
+
+\section{Couplage}
+
+\begin{frame}
+	\frametitle{Conditions limites et FEM}
+
+	\begin{block}{Classiquement}
+		\begin{itemize}
+			\item $R$ comme une inconnue
+			\item Vecteurs et matrices étendues
+			\item Traduction exacte des équations de continuité
+		\end{itemize}
+
+		\pause
+
+		\begin{equation*}
+			\left(~
+			\begin{array}{cccc|c}
+				&&&&-jk\\
+				&&&&0\\
+				& & \uul{K} - k^2\uul{M} & &\vdots \\
+				&&&&0\\\hline
+					1 & 0 & \cdots & 0& -1 \\
+			\end{array}
+			~\right)
+			\left\{~
+			\begin{matrix}
+				\\
+				\\
+				\GP\\
+				\\\hline
+				R
+			\end{matrix}
+			~\right\} = 
+			\left\{~
+			\begin{matrix}
+				-jk\\
+				0\\
+				\vdots\\
+				0\\\hline
+				1
+			\end{matrix}
+			~\right\}
+		\end{equation*}
+	\end{block}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Conditions limites et FEM}
+
+	\begin{block}{Caractéristiquement...}
+		\begin{itemize}
+			\item Utilisation des caractéristiques pour exprimer la condition
+			\item Besoin des fonctions de forme pour exprimer les champs
+			\item Nécessité de dériver les fonctions de forme...
+		\end{itemize}
+
+		\pause
+
+		\begin{equation*}
+			\nabla p\bigg|_0 = - jk -\frac{jk}{2}\left[\left(\phi_1(0) + \frac{\phi'_1(0)}{jk}\right)\GP_1 + \left(\phi_2(0) + \frac{\phi'_2(0)}{jk}\right)\GP_2 \right]
+		\end{equation*}
+	\end{block}
+
+	\begin{center}
+		\alert{\textbf{Dérivation des fonctions de forme : \\perte d'un ordre de convergence ?}}
+	\end{center}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Conditions limites et FEM}
+	\begin{block}{Malheureusement... oui.}
+		\begin{center}
+		\includegraphics[width=0.6\textwidth]{../report/part3/figs/convergence.png}
+		\end{center}
+	\end{block}
+
+	\pause
+
+	\begin{center}
+		\alert{\textbf{
+		Comment éviter ce (gros) désagrément ?
+		}}
+	\end{center}
+\end{frame}
+
+
+\section{Amélioration de la convergence}
+
+\begin{frame}
+	\frametitle{Dérivation «naturelle» ?}
+
+	\textbf{Question :} Existe-t-il une méthode d'interpolation donnant \alert{directement accès} à la dérivée du champ
+	?
+
+	\pause
+	\bigskip
+
+	\textbf{Réponse :} Oui ! L'interpolation par \alert{splines d'Hermite} !
+
+	\begin{equation*}
+		p_e(x) = \left[\H{00}(x)\big|\H{10}(x)\big|\H{01}(x)\big|\H{11}(x)\right]\begin{Bmatrix}p_1\\p'_1\\p_2\\p'_2\end{Bmatrix}
+	\end{equation*}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Convergence}
+
+	\begin{block}{Words are good... show me the curve !}
+		\begin{center}
+			\includegraphics[width=0.6\textwidth]{../report/part4/figs/herm_comp.png}
+		\end{center}
+	\end{block}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Convergence}
+
+	\begin{block}{Ça converge !}
+		\begin{columns}[onlytextwidth]
+		\begin{column}{0.6\textwidth}
+				\begin{itemize}
+				  \item Pas de perte d'un ordre
+				  \item Converge mieux que les éléments quadratiques quelque soit la méthodes choisie
+				\end{itemize}
+		\end{column}
+		\pause
+		\begin{column}{0.4\textwidth}\centering
+			\includegraphics[width=\textwidth]{ferret_converges_mod.png}
+		\end{column}
+		\end{columns}
+	\end{block}
+\end{frame}
+
+\section{Et ensuite ?}
+
+\begin{frame}
+	\frametitle{Pistes pour la suite}
+
+	\begin{itemize}
+		\item Coupler plusieurs éléments DGM et FEM ensemble
+		\item Analyser le comportement du couplage en 2D
+		\item Appliquer la méthode à de vrais problèmes
+		\item Analyser l'évolution du temps de calcul
+		\item Auto-sélection de la méthode la plus adaptés à certains groupes d'éléments sur un maillage quelconque
+		\item etc...
+	\end{itemize}
+\end{frame}
+
+\section*{Conclusion}
+
+\begin{frame}
+	\frametitle{Conclusion}
+	\begin{itemize}
+		\item Prise en main et analyse de 2 méthodes de calcul
+		\item Introduction aux possibilités de couplage ente méthodes
+		\item Travail sur un sujet de recherche intéressant
+		\item Possibilités de poursuite du projet
+	\end{itemize}
 \end{frame}
 
 \begin{frame}
@@ -43,5 +294,12 @@
         \item \textbf{Analyse Numérique : une approche mathématique}, M. Schatzman
     \end{itemize}
 \end{frame}
+
+\plain{Merci !\\
+\vspace{0.25\textwidth}
+Des questions ?\\
+\vspace{0.15\textwidth}
+\scriptsize{\texttt{mathieu@matael.org}}
+}
 
 \end{document}
