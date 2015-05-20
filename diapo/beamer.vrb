@@ -1,13 +1,16 @@
-\frametitle{Introduction}
+\frametitle{Méthode de Galerkin Discontinue avec ondes planes}
+    \begin{wrapfigure}{r}{0.6\textwidth}
+        \vspace{-0.1\textwidth}
+        \begin{tikzpicture}[>=stealth,scale=0.4,transform shape]
+        \input{propa_1D.tex}
+        \end{tikzpicture}
+    \end{wrapfigure}
 
-    \begin{itemize}
-        \item Méthodes numériques : enjeu majeur pour la simulation de systèmes complexes
-        \item Grande diversité dans les méthodes disponibles
-        \item Fortes spécificités pour chaque méthode
-        \item Méthodes classiques : FEM, DGM, etc...
-    \end{itemize}
+\begin{block}{Solution exacte en 1D...}
+\begin{center}
+\includegraphics[width=0.6\textwidth]{comp_hermiteFEM_dgm.png}
 
-    \pause
-    \begin{center}
-        \alert{\textbf{Comment combiner deux méthodes pour profiter d'un maximum d'avantages ?}}
-    \end{center}
+        \footnotesize{Pression acoustique dans la cavité de \textcolor{blue}{référence} et calculée\\
+        par \textcolor{red}{DGM} en fonction de la distance.}
+\end{center}
+\end{block}

@@ -5,13 +5,15 @@
 \usepackage{booktabs}
 \usepackage{amsmath}
 \usepackage{nicefrac}
+\usepackage{color}
+\usepackage{wrapfig}
 \input{../report/typesetting.tex}
 \newcommand\GP{\mathbb{P}}
 
 \title{Couplage FEM/DGM}
 \subtitle{Analyse des méthodes et proposition de couplage}
-\date{Année 2014-2015}
-\author{Mathieu Gaborit}
+\date{Master 1 Acoustique\hfill Année 2014-2015}
+\author{Mathieu Gaborit\hfill O. Dazel --- Enseignant-Chercheur}
 \institute{Université du Maine}
 
 \begin{document}
@@ -44,7 +46,9 @@
 \begin{frame}
 	\frametitle{Problème de référence}
 	\begin{center}
+        \begin{tikzpicture}[>=stealth,scale=0.8,transform shape]
 		\input{propa_1D.tex}
+        \end{tikzpicture}
 	\end{center}
 
 	\begin{block}{Hypothèses}
@@ -88,6 +92,9 @@
 	\begin{block}{Influence du type d'éléments}
 		\begin{center}
 		\includegraphics[width=0.6\textwidth]{../report/part1/figs/FEM/simuls_1D/convergence.png}
+
+        \footnotesize{Erreur relative en fonction du nombre de degrés de libertés\\
+        pour des éléments \textcolor{blue}{linéaires} et \textcolor{red}{quadratiques}}
 		\end{center}
 	\end{block}
 \end{frame}
@@ -97,10 +104,11 @@
 
 	$$\int_\Omega \vec{v}^T\left(j\omega + A\nabla\right)\vec{u}\mathrm{d}\Gamma = 0$$
 
-	\begin{block}{Généralités}
+	\begin{block}{Généralité.s}
 		\begin{itemize}
 			\item Basée sur la formulation variationnelle de l'équation d'Helmholtz
-			\item Utilisation des caractéristiques de l'EDP comme champ de test (Gabard/Dazel'15)
+            \item Utilisation des caractéristiques de l'EDP comme champ de test (Gabard \& Dazel, 2015, \textit{Int. J.
+                Numer. Engng.})
 			\item Possibilité d'utiliser de grands éléments
 		\end{itemize}
 	\end{block}
@@ -112,12 +120,21 @@
 	\end{block}
 \end{frame}
 
-\begin{frame}
+\begin{frame}[fragile]
 	\frametitle{Méthode de Galerkin Discontinue avec ondes planes}
+    \begin{wrapfigure}{r}{0.6\textwidth}
+        \vspace{-0.1\textwidth}
+        \begin{tikzpicture}[>=stealth,scale=0.4,transform shape]
+        \input{propa_1D.tex}
+        \end{tikzpicture}
+    \end{wrapfigure}
 
 	\begin{block}{Solution exacte en 1D...}
 		\begin{center}
-		\includegraphics[width=0.7\textwidth]{comp_hermiteFEM_dgm.png}
+		\includegraphics[width=0.6\textwidth]{comp_hermiteFEM_dgm.png}
+
+        \footnotesize{Pression acoustique dans la cavité de \textcolor{blue}{référence} et calculée\\
+        par \textcolor{red}{DGM} en fonction de la distance.}
 		\end{center}
 	\end{block}
 \end{frame}
@@ -173,7 +190,7 @@
 
 	\begin{block}{Caractéristiquement...}
 		\begin{itemize}
-			\item Utilisation des caractéristiques pour exprimer la condition
+			\item Utilisation des caractéristiques pour exprimer la condition limite en $x=0$
 			\item Besoin des fonctions de forme pour exprimer les champs
 			\item Nécessité de dériver les fonctions de forme...
 		\end{itemize}
@@ -193,9 +210,15 @@
 \begin{frame}
 	\frametitle{Conditions limites et FEM}
 	\begin{block}{Malheureusement... oui.}
-		\begin{center}
-		\includegraphics[width=0.6\textwidth]{../report/part3/figs/convergence.png}
-		\end{center}
+		\begin{columns}[onlytextwidth]
+            \begin{column}{0.6\textwidth}
+                \includegraphics[width=\textwidth]{../report/part3/figs/convergence.png}
+            \end{column}
+            \begin{column}{0.4\textwidth}
+            \footnotesize{Erreur relative en fonction du nombre d'éléments\\
+            pour la méthode classique et pour des \textcolor{red}{caractéristiques}}
+            \end{column}
+		\end{columns}
 	\end{block}
 
 	\pause
@@ -228,31 +251,28 @@
 
 \begin{frame}
 	\frametitle{Convergence}
-
 	\begin{block}{Words are good... show me the curve !}
-		\begin{center}
-			\includegraphics[width=0.6\textwidth]{../report/part4/figs/herm_comp.png}
-		\end{center}
-	\end{block}
-\end{frame}
-
-\begin{frame}
-	\frametitle{Convergence}
-
-	\begin{block}{Ça converge !}
 		\begin{columns}[onlytextwidth]
 		\begin{column}{0.6\textwidth}
-				\begin{itemize}
-				  \item Pas de perte d'un ordre
-				  \item Converge mieux que les éléments quadratiques quelque soit la méthodes choisie
-				\end{itemize}
+			\includegraphics[width=\textwidth]{../report/part4/figs/herm_comp.png}
 		\end{column}
-		\pause
-		\begin{column}{0.4\textwidth}\centering
-			\includegraphics[width=\textwidth]{ferret_converges_mod.png}
+		\begin{column}{0.4\textwidth}
+            \footnotesize{Erreur relative en fonction du nombre de degrés de liberté pour les méthodes classique
+            (-~-) et des caractéristiques (---) pour des éléments quadratiques et des \textcolor{blue}{spline}
+            \textcolor{red}{d'Hermite}}
 		\end{column}
 		\end{columns}
 	\end{block}
+
+    \pause
+
+    \begin{center}
+        \alert{Ça converge !}
+
+        \pause
+
+        Mieux que les éléments quadratiques...\pause pour les deux méthodes
+    \end{center}
 \end{frame}
 
 \section{Et ensuite ?}
@@ -286,11 +306,10 @@
     \frametitle{References}
 
     \begin{itemize}
-        \item \textbf{A discontinuous Galerkin Method with Plane Waves for Sound Absorbing Materials}, \textit{Int. J.
-            Numer. Engng}, G. Gabard, O.  Dazel
-        \item \textbf{A comparison of wave-based discontinuous Galerkin, ultra-week and least-square method for wave
-            problems}, \textit{Int. J.
-            Numer. Engng}, G. Gabard, P. Gamallo, T. Huttunen
+        \item  G. Gabard, O.  Dazel, \textbf{A discontinuous Galerkin Method with Plane Waves for Sound Absorbing
+            Materials}, 2015, \textit{Int. J.  Numer. Engng}, à paraître
+        \item  G. Gabard, P. Gamallo, T. Huttunen, \textbf{A comparison of wave-based discontinuous Galerkin, ultra-week
+            and least-square method for wave problems}, 2011, \textit{Int. J.  Numer. Engng}, vol. 85 no 3
         \item \textbf{Analyse Numérique : une approche mathématique}, M. Schatzman
     \end{itemize}
 \end{frame}
