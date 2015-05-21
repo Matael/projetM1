@@ -1,3 +1,4 @@
+\select@language {french}
 \contentsline {part}{I\hspace {1em}M\IeC {\'e}thode des \IeC {\'E}l\IeC {\'e}ments finis}{2}
 \contentsline {section}{\numberline {I.}G\IeC {\'e}n\IeC {\'e}ralit\IeC {\'e}s}{3}
 \contentsline {subsection}{\numberline {A)}Formulation Variationnelle}{3}
@@ -5,23 +6,23 @@
 \contentsline {subsection}{\numberline {C)}Matrices Bool\IeC {\'e}ennes et Vecteurs Globaux}{4}
 \contentsline {section}{\numberline {II.}Fonctions d'interpolation classiques}{5}
 \contentsline {subsection}{\numberline {A)}\IeC {\'E}l\IeC {\'e}ments Lin\IeC {\'e}aires}{5}
-\contentsline {subsection}{\numberline {B)}\IeC {\'E}l\IeC {\'e}ments quadratiques}{5}
+\contentsline {subsection}{\numberline {B)}\IeC {\'E}l\IeC {\'e}ments quadratiques}{6}
 \contentsline {subsection}{\numberline {C)}Note sur l'impl\IeC {\'e}mentation}{6}
-\contentsline {section}{\numberline {III.}Probl\IeC {\`e}me 1D}{6}
+\contentsline {section}{\numberline {III.}Probl\IeC {\`e}me 1D}{7}
 \contentsline {subsection}{\numberline {A)}Position du Probl\IeC {\`e}me}{7}
 \contentsline {subsection}{\numberline {B)}Solution par \IeC {\'e}l\IeC {\'e}ments finis}{7}
-\contentsline {subsection}{\numberline {C)}Prise en compte de l'excitation}{7}
-\contentsline {subsection}{\numberline {D)}Solution analytique}{8}
+\contentsline {subsection}{\numberline {C)}Prise en compte de l'excitation}{8}
+\contentsline {subsection}{\numberline {D)}Solution analytique}{9}
 \contentsline {subsection}{\numberline {E)}Convergence}{9}
 \contentsline {part}{II\hspace {1em}M\IeC {\'e}thode de Galerkin Discontinue avec Ondes Planes}{11}
 \contentsline {section}{\numberline {I.}G\IeC {\'e}n\IeC {\'e}ralit\IeC {\'e}s}{12}
 \contentsline {paragraph}{\numberline {}Formulation variationnelle}{12}
-\contentsline {paragraph}{\numberline {}Nota Bene}{12}
+\contentsline {paragraph}{\numberline {}Nota Bene}{13}
 \contentsline {section}{\numberline {II.}Discr\IeC {\'e}tisation des champs}{13}
 \contentsline {section}{\numberline {III.}Probl\IeC {\`e}me 1D}{13}
-\contentsline {subsection}{\numberline {A)}Condition limite \IeC {\`a} droite}{13}
+\contentsline {subsection}{\numberline {A)}Condition limite \IeC {\`a} droite}{14}
 \contentsline {subsection}{\numberline {B)}Condition limite \IeC {\`a} gauche}{14}
-\contentsline {subsection}{\numberline {C)}Simulation}{14}
+\contentsline {subsection}{\numberline {C)}Simulation}{15}
 \contentsline {part}{III\hspace {1em}Couplage -- Caract\IeC {\'e}ristiques et Conditions aux Limites}{16}
 \contentsline {section}{\numberline {I.}Retour sur les conditions aux limites en MEF}{17}
 \contentsline {subsection}{\numberline {A)}Utilisation de la formulation de Galerkin}{17}
@@ -36,4 +37,4 @@
 \contentsline {section}{\numberline {II.}Etude de convergence}{22}
 \contentsline {paragraph}{\numberline {}Entre \IeC {\'e}l\IeC {\'e}ments quadratiques et splines d'Hermite}{23}
 \contentsline {paragraph}{\numberline {}Entre m\IeC {\'e}thode classique et m\IeC {\'e}thode par caract\IeC {\'e}ristiques}{23}
-\contentsline {chapter}{\numberline {A}Splines d'Hermite}{26}
+\contentsline {chapter}{\numberline {A}Splines d'Hermite}{27}
