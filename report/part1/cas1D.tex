@@ -8,40 +8,21 @@ Le schéma du problème est présenté en figure~\ref{fig:FEM:propa_1D}.
 \begin{figure}[!ht]
 	\centering
 	\input{part1/figs/FEM/propa_1D.tex}
-	\caption{\label{fig:FEM:propa_1D}Schéma du problème de propagation dans une cavité acoustique 1D de longueur L.}
+	\caption{\label{fig:FEM:propa_1D}Schéma du problème de propagation dans une cavité 1D de longueur L.}
 \end{figure}
 
 \subsection{Position du Problème}
 
-Les conditions aux limites en $x=0$ et $x=L$ imposent :
+Les hypothèses sont alors :
 
-\begin{equation}
-	\left\{\begin{array}{l}
-	\left.\nabla p\right|_{x=L} = 0\\
-	\left.p\right|_{x=0} = p_i+p_r
-	\end{array}\right. \label{FEM1D:BC}
-\end{equation}
+\begin{itemize}
+	\item paroi en $x=L$ parfaitement rigide ;
+	\item entrée excitée par une onde plane d'amplitude unitaire ;
+	\item effets viso-thermiques négligés ;
+	\item les effets de diffraction ou de rayonnement ne sont pas pris en compte.
+\end{itemize}
 
-\subsection{Solution par éléments finis}
-
-En se plaçant dans le formalisme éléments finis, il vient --- d'après~\eqref{FEM1D:final} :
-
-\begin{equation}
-	\left[- \uul{K} + k^2\uul{M}\right]\GP = \begin{Bmatrix} \nabla p\bigg|_0\\0\\\vdots\\0\\-\nabla p\bigg|_L\end{Bmatrix}
-\end{equation}
-
-En considérant la condition en limite en $x=L$, le second membre est simplifié :
-
-\begin{equation}
-\left[- \uul{K} + k^2\uul{M}\right]\GP = \begin{Bmatrix} \nabla p\bigg|_0\\0\\\vdots\\0\end{Bmatrix}
-	\label{FEM1D:post_BCL}
-\end{equation}
-
-\subsection{Prise en compte de l'excitation}
-
-Le problème est posé de sorte que l'entrée du résonateur est excitée par une onde plane se propageant vers les $x$
-croissants et que les interactions à l'interface produisent une onde plane réfléchie se propageant vers les $x$
-décroissants. Ainsi, en notant $p_i$ l'onde incidente et $p_r$ l'onde réfléchie :
+Enfin, à l'extérieur du guide :
 
 \begin{equation}
 	\left\{
@@ -52,17 +33,39 @@ décroissants. Ainsi, en notant $p_i$ l'onde incidente et $p_r$ l'onde réfléch
 	\right.\label{FEM1D:expr_ondes}
 \end{equation}
 
-La continuité des pressions et des vitesses normales en $x=0$ amène :
+Les conditions aux limites en $x=0$ et $x=L$ imposent donc :
+
+\begin{equation}
+	\left\{\begin{array}{l}
+	\left.\nabla p\right|_{x=L} = 0\\
+	\left.p\right|_{x=0} = 1+R
+	\left.p\right|_{x=0} = jk(R-1)
+	\end{array}\right. \label{FEM1D:BC}
+\end{equation}
+
+
+\subsection{Solution par éléments finis}
+
+En se plaçant dans le formalisme éléments finis et en utilisant la condition en $x=L$, il vient --- d'après~\eqref{FEM1D:final} :
+
+\begin{equation}
+	\left[- \uul{K} + k^2\uul{M}\right]\GP = \begin{Bmatrix} \nabla p\bigg|_0\\0\\\vdots\\0\\-\nabla p\bigg|_L\end{Bmatrix} = \begin{Bmatrix} \nabla p\bigg|_0\\0\\\vdots\\0\end{Bmatrix}
+	\label{FEM1D:post_BCL}
+\end{equation}
+
+\subsection{Prise en compte de l'excitation}
+
+La continuité des pressions et des vitesses normales en $x=0$ amène --- d'après~\eqref{FEM1D:BC} :
 
 \begin{equation*}
-	p(0) = e^{-jk_x\times0}+Re^{jk_x\times0} \Leftrightarrow p'(0) = jk(R-1)
+	\left.\nabla\right|_{x=0} p'(0) = jk(R-1)
 \end{equation*}
 
 En remplaçant ce dernier résultat dans~\eqref{FEM1D:final}, il vient :
 
-\begin{equation}
-\left[\uul{K} - k^2\uul{M}\right]\GP = \begin{Bmatrix} jk(R-1)  \\0\\\vdots\\0\end{Bmatrix} \label{FEM1D:final}
-\end{equation}
+\begin{equation*}
+\left[\uul{K} - k^2\uul{M}\right]\GP = \begin{Bmatrix} jk(R-1)  \\0\\\vdots\\0\end{Bmatrix}
+\end{equation*}
 
 Il est alors intéressant de rassembler les inconnues sur la gauche de l'équation en introduisant le vecteur étendu
 suivant :
@@ -75,12 +78,12 @@ Il est aussi nécéssaire d'étendre la matrice de la partie gauche d'une colonn
 dans le système d'équations, il faudra enfin retranscrire la condition de continuité suivante sur la dernière ligne :
 
 \begin{equation*}
-	\uul{P}_0 = 1 + R
+	\GP_0 = 1 + R
 \end{equation*}
 
 soit :
 
-\begin{equation}
+\begin{equation*}
 	\underbrace{\left(~
 	\begin{array}{cccc|c}
 		&&&&-jk\\
@@ -107,12 +110,7 @@ soit :
 		0\\\hline
 		1
 	\end{matrix}
-	~\right\}}_{\ul{b}}
-\end{equation}
-
-La résolution se fait alors simplement sur un système de calcul matriciel :
-
-\begin{equation*}
+	~\right\}}_{\ul{b}} \Rightarrow
 	\ul{X} = \uul{A}^{-1}\ul{b}
 \end{equation*}
 
@@ -125,13 +123,12 @@ analytique. Le problème est ici posé de sorte que l'impédance en $x=L$ est co
 	Z_L = Z(L) \rightarrow \infty \label{FEM1D:ana:ZL}
 \end{equation}
 
-En utilisant la théorie des lignes (et en particulier la formule de l'impédance ramenée), il vient (avec $Z_c =
+En utilisant la théorie des lignes (et en particulier la formule de l'impédance ramenée), il vient (avec $Z_0 =
 \rho c$ l'impédance caractéristique):
 
 \begin{eqnarray}
-	Z_i = Z(0) 	& = & Z_c \frac{Z_L+jZ_c\tan(kL)}{Z_c + jZ_L\tan(kL)}\notag\\
-			    & = & Z_c \frac{Z_L}{Z_L}\frac{1+j\nicefrac{Z_c}{Z_L}\tan(kL)}{\nicefrac{Z_c}{Z_L} + j\tan(kL)}\notag\\
-		    Z_i & \overset{Z_L\rightarrow\infty}{\approx} & Z_c\frac{1}{j\tan(kL)}\label{FEM1D:ana:Zi}
+	Z_i = Z(0) 	& = & Z_0 \frac{Z_L+jZ_0\tan(kL)}{Z_0 + jZ_L\tan(kL)} \Leftrightarrow  Z_0 \frac{Z_L}{Z_L}\frac{1+j\nicefrac{Z_0}{Z_L}\tan(kL)}{\nicefrac{Z_0}{Z_L} + j\tan(kL)}\notag\\
+		    Z_i & \overset{Z_L\rightarrow\infty}{\approx} & Z_0\frac{1}{j\tan(kL)}\label{FEM1D:ana:Zi}
 \end{eqnarray}
 
 En considérant une onde incidente d'amplitude 1 (en incidence normale) générant, à l'interface, une onde transmise (dans le
@@ -139,19 +136,19 @@ résonateur) et une onde réfléchie d'amplitude $R$ (voir le système d'équati
 conditions de continuité, il vient :
 
 \begin{equation*}
-	R = \frac{Z_i-Z_c}{Z_i+Z_c}
+	R = \frac{Z_i-Z_0}{Z_i+Z_0}
 \end{equation*}
 
 En remplaçant~\eqref{FEM1D:ana:Zi} dans l'équation précédente :
 
 \begin{equation}
-	R = \frac{Z_c}{j\tan(k*L)}\label{FEM1D:ana:R}
+	R = \frac{Z_0}{j\tan(kL)}\label{FEM1D:ana:R}
 \end{equation}
 
 \subsection{Convergence}
 
 La suite compare la phase du coefficient de réflexion analytique et celle du coefficient calculé par éléments
-finis. L'étude vise à la comparaison des courbes de convergence pour des éléments linéaires et quadratiques.
+finis. L'étude vise à comparer les courbes de convergence pour des éléments linéaires et quadratiques.
 
 La fonction d'erreur utilisée mesure l'erreur sur la phase du coefficient de réflexion :
 
@@ -161,22 +158,7 @@ La fonction d'erreur utilisée mesure l'erreur sur la phase du coefficient de r�
 \end{equation}
 
 
-Les résultats sont présentés en figure~\ref{fig:FEM1D:simuls}.
-
-\begin{figure}[!ht]
-	\centering
-	\begin{subfigure}{0.48\textwidth}
-		\includegraphics[width=\textwidth]{part1/figs/FEM/simuls_1D/phase.png}
-		\caption{\label{fig:FEM1D:simuls:phase}Valeurs de $arg(R)$ en fonction du nombre de degrés de liberté.}
-	\end{subfigure}~%
-	\begin{subfigure}{0.48\textwidth}
-		\includegraphics[width=\textwidth]{part1/figs/FEM/simuls_1D/convergence.png}
-		\caption{\label{fig:FEM1D:simuls:convergence}Valeurs des fonctions d'erreur en fonction du nombre de degrés de liberté.}
-\end{subfigure}
-	\caption{\label{fig:FEM1D:simuls}Résultat des simulations. En rouge, les résultats pour des éléments quadratiques en bleu pour des éléments
-	linéaires : on remarque une meilleure convergence des premiers (voir figure~\ref{fig:FEM1D:simuls:convergence}). Dans
-	les deux cas, la valeur théorique est correctement approchée si l'on augmente le nombre d'éléments.}
-\end{figure}
+Les résultats sont présentés en figure~\ref{fig:FEM1D:simuls:convergence}.
 
 Le passage d'éléments linéaires à des éléments quadratiques augmente d'un ordre la convergence de la méthode, comme le
 montre le diagramme de convergence (figure~\ref{fig:FEM1D:simuls:convergence}).
@@ -184,8 +166,18 @@ montre le diagramme de convergence (figure~\ref{fig:FEM1D:simuls:convergence}).
 Il faut noter toutefois que dans un cas comme dans l'autre, l'approximation tend vers la solution exacte en augmentant
 le nombre d'éléments.
 
-Une autre limite apparaît lorsqu'est considèrée l'influence de la fréquence : en effet, pour une bonne précision de
+Une autre limite apparaît lorsqu'est considérée l'influence de la fréquence : en effet, pour une bonne précision de
 l'approximation, il est nécessaire de disposer d'au moins 2 éléments par longueur d'onde : les méthodes par éléments
 finis sont donc très gourmandes aux hautes fréquences de part la nécessité de disposer d'un maillage toujours plus fin
 et donc d'augmenter drastiquement la taille des structures de donnée.
+
+
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=11cm]{part1/figs/FEM/simuls_1D/convergence.png}
+	\caption{\label{fig:FEM1D:simuls:convergence}Valeurs des fonctions d'erreur en fonction du nombre de degrés de
+	liberté. En rouge, les résultats pour des éléments quadratiques en bleu pour des éléments linéaires : on
+	remarque une meilleure convergence des premiers. Dans les deux cas, la valeur théorique est correctement approchée
+	si l'on augmente le nombre d'éléments.}
+\end{figure}
 

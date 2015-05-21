@@ -12,7 +12,7 @@
 \contentsline {subsection}{\numberline {A)}Position du Probl\IeC {\`e}me}{7}
 \contentsline {subsection}{\numberline {B)}Solution par \IeC {\'e}l\IeC {\'e}ments finis}{7}
 \contentsline {subsection}{\numberline {C)}Prise en compte de l'excitation}{8}
-\contentsline {subsection}{\numberline {D)}Solution analytique}{9}
+\contentsline {subsection}{\numberline {D)}Solution analytique}{8}
 \contentsline {subsection}{\numberline {E)}Convergence}{9}
 \contentsline {part}{II\hspace {1em}M\IeC {\'e}thode de Galerkin Discontinue avec Ondes Planes}{11}
 \contentsline {section}{\numberline {I.}G\IeC {\'e}n\IeC {\'e}ralit\IeC {\'e}s}{12}
@@ -30,11 +30,11 @@
 \contentsline {subsection}{\numberline {C)}Interpolation des caract\IeC {\'e}ristiques}{18}
 \contentsline {paragraph}{\numberline {}Nota Bene}{18}
 \contentsline {subsection}{\numberline {D)}Influence sur la convergence}{19}
-\contentsline {part}{IV\hspace {1em}Am\IeC {\'e}lioration de la convergence}{20}
-\contentsline {section}{\numberline {I.}Une nouvelle interpolation : les splines d'Hermite}{21}
-\contentsline {subsection}{\numberline {A)}Formulation classique}{21}
-\contentsline {subsection}{\numberline {B)}M\IeC {\'e}thode des caract\IeC {\'e}ristiques}{21}
-\contentsline {section}{\numberline {II.}Etude de convergence}{22}
-\contentsline {paragraph}{\numberline {}Entre \IeC {\'e}l\IeC {\'e}ments quadratiques et splines d'Hermite}{23}
-\contentsline {paragraph}{\numberline {}Entre m\IeC {\'e}thode classique et m\IeC {\'e}thode par caract\IeC {\'e}ristiques}{23}
-\contentsline {chapter}{\numberline {A}Splines d'Hermite}{27}
+\contentsline {part}{IV\hspace {1em}Am\IeC {\'e}lioration de la convergence}{21}
+\contentsline {section}{\numberline {I.}Une nouvelle interpolation : les splines d'Hermite}{22}
+\contentsline {subsection}{\numberline {A)}Formulation classique}{22}
+\contentsline {subsection}{\numberline {B)}M\IeC {\'e}thode des caract\IeC {\'e}ristiques}{22}
+\contentsline {section}{\numberline {II.}\IeC {\'E}tude de convergence}{23}
+\contentsline {paragraph}{\numberline {}Entre \IeC {\'e}l\IeC {\'e}ments quadratiques et splines d'Hermite}{24}
+\contentsline {paragraph}{\numberline {}Entre m\IeC {\'e}thode classique et m\IeC {\'e}thode par caract\IeC {\'e}ristiques}{24}
+\contentsline {chapter}{\numberline {A}Splines d'Hermite}{28}

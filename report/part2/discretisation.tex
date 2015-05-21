@@ -1,11 +1,11 @@
 \section{Discrétisation des champs}
 
-Le choix des fonctions test est un enjeu prépondérant dans la méthode de Galerkin discontinue.
+Le choix des fonctions du champ de test un enjeu prépondérant dans la méthode de Galerkin discontinue.
 La suite cherche à discrétiser les champs de tests \textit{via} une base d'ondes planes, comme proposé par Gabard
 \textit{et al.}\cite{Gabard15}.
 
 Les expressions des champs discrétisés sont tirées directement de la résolution des équations
-différentielles~\eqref{dgm:eq_u} et~\eqref{eq_v}. Il faut noter que le problème à résoudre pour $\ul{v}$ est l'adjoint
+différentielles~\eqref{dgm:eq_u} et~\eqref{dgm:eq_v}. Il faut noter que le problème à résoudre pour $\ul{v}$ est l'adjoint
 de celui à résoudre pour $\ul{u}$ (la matrice $\uul{A}$ n'étant pas symétrique).
 
 Les solutions recherchés sont donc composées d'une somme d'ondes planes :
@@ -39,7 +39,7 @@ La solution pour $\ul{u}$ est donc de la forme :
     \end{Bmatrix}}_{\GU}
 \end{equation}
 
-Le champ de test $\ul{v}$ est solution du problème adjoint, la solution pour $\ul{v}$ est donc de la forme
+Le champ de test $\ul{v}$ est solution du problème adjoint~\eqref{dgm:eq_v}, la solution pour $\ul{v}$ est donc de la forme
 
 \begin{equation}
     \ul{v} =

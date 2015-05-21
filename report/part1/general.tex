@@ -1,4 +1,4 @@
-Parmi les méthodes de discrétisation les plus souvent citées, la méthode des éléments finis tiennent certainement une
+Parmi les méthodes de discrétisation les plus souvent citées, la méthode des éléments finis tient certainement une
 des meilleurs places. Dans cette partie, la méthode est succintement présentée ainsi que les fonctions d'interpolation
 courantes. Enfin, la simulation d'une cavité acoustique 1D est implémentée avec un double objectif : discuter de la
 prise en compte des conditions limites en éléments finis d'une part et introduire la notion de convergence et son
@@ -26,8 +26,8 @@ parties, le problème s'exprime comme en~\eqref{FEM1D:IPP}.
 
 \subsection{Fonctions de forme}
 
-Supposant que les champs $p$ et $\DP$ sur un intervale $[x_i, x_j]$ sont décomposables en une combinaison linéaire de
-fonctions $\phi_k$ (dites fonctions de forme) assorties des valeurs du champs à des points particuliers $x_k$ du domaine, il
+Supposant que les champs $p$ et $\DP$ sont décomposables sur un intervalle $[x_i, x_j]$ en une combinaison linéaire de
+fonctions $\phi_k$ (dites fonctions de forme) assorties des valeurs du champ à des points particuliers $x_k$ du domaine, il
 vient (cas 1D):
 
 \begin{equation}
@@ -41,10 +41,9 @@ vient (cas 1D):
 	\end{array}\right.\label{FEM1D:shapefun}
 \end{equation}
 
-Pour alléger les notations, on pose $\alpha_k\equiv \alpha(x_k)$ où $\alpha$ est un champ et $x_k$ un point, de même
-$\phi_k\equiv\phi_k(x)$.
+Pour alléger les notations, on pose $\alpha_k\equiv \alpha(x_k)$, où $\alpha$ est un champ et $x_k$ un point.
 
-Il est de ré-écrire les équations de~\eqref{FEM1D:shapefun} de manière vectorielle comme présenté
+Il est possible de ré-écrire les équations de~\eqref{FEM1D:shapefun} sous forme vectorielle comme présenté
 en~\eqref{FEM1D:shapevec}.
 
 \begin{equation}
@@ -52,12 +51,11 @@ en~\eqref{FEM1D:shapevec}.
 			\big[\phi_1\big|\cdots\big|\phi_N\big]\ul{p}\label{FEM1D:shapevec}
 \end{equation}
 
-Et de même pour les champs $p'$, $\DP$ et $\DP'$, on note $\ul{\phi}$ et $\ul{\phi'}$ les vecteurs des fonctions de
-forme et de leur dérivées respectivement.
+Et de même pour les champs $p'$, $\DP$ et $\DP'$. On note dans la suite $\ul{\phi}$ et $\ul{\phi'}$ les vecteurs des fonctions de
+forme et de leurs dérivées respectivement.
 
-En utilisant cette dernière équation~\eqref{FEM1D:shapevec}, en considérant une partition du domaine $\Omega$ de sorte
-que $\Omega = \sum_e\Omega_e$ où l'équation~\eqref{FEM1D:helm} est vérifiée sur chacune des parties de $\Omega$ et en
-utilisant la relation de Chasles, il vient (de~\eqref{FEM1D:post_IPP}):
+En considérant une partition du domaine $\Omega$ telle que $\Omega = \sum_e\Omega_e$ où~\eqref{FEM1D:helm} est vérifiée
+sur chacune $\Omega_e$ et en utilisant cette dernière équation~\eqref{FEM1D:shapevec} --- cf. ~\eqref{FEM1D:IPP} :
 
 \begin{eqnarray*}
 	- \int_\Omega \nabla p~\nabla \DP ~\dd\Omega + k^2\int_\Omega p~\DP~\dd\Omega & = & -\int_{\partial\Omega}\nabla p~\DP~\dd\Gamma, \quad \forall\DP\\
@@ -73,10 +71,10 @@ Après calcul des produits $\ul{\phi^T\phi}$ et $\ul{\phi'^T\phi'}$ et passage d
 obtenues, il vient :
 
 \begin{equation}
-	\Leftrightarrow \sum_e\left\{- \ul{\DP^T}~\uul{K}_e~\ul{p} + k^2 \ul{\DP^T}~\uul{M}_e~\ul{p} \right\} = -\int_{\partial\Omega}\nabla p~\DP\dd\Gamma, \quad \forall\DP\label{FEM1D:elem_mat}\\
+	\sum_e\left\{- \ul{\DP^T}~\uul{K}_e~\ul{p} + k^2 \ul{\DP^T}~\uul{M}_e~\ul{p} \right\} = -\int_{\partial\Omega}\nabla p~\DP\dd\Gamma, \quad \forall\DP\label{FEM1D:elem_mat}\\
 \end{equation}
 
-Avec :
+avec :
 
 \begin{equation*}
 	\uul{M}_e = \begin{bmatrix}
@@ -87,16 +85,16 @@ Avec :
 	\end{bmatrix}
 \end{equation*}
 
-Et de même pour $\uul{K}_e$ en considérant les dérivées $(\phi'_1,\ldots,\phi'_N)$ des fonctions de forme plutôt que les
+La matrice $\uul{K}_e$ est obtenue en considérant les dérivées $(\phi'_1,\ldots,\phi'_N)$ des fonctions de forme plutôt que les
 fonctions elles-mêmes. Ces matrices sont appelées matrices élémentaires.
 
 \subsection{Matrices Booléennes et Vecteurs Globaux}
 \newcommand{\GP}{\ul{\mathbb{P}}}
 \newcommand{\GDP}{\ul{\delta\mathbb{P}}}
-L'objectif est maitenant d'exprimer l'intérieur de la somme en fonction non plus des extrémités de l'éléments en cours
+L'objectif est maitenant d'exprimer l'intérieur de la somme non plus en fonction des extrémités de l'éléments en cours
 $\ul{p}_e$ et $\ul{\DP}_e$ mais des vecteurs globaux $\GP$ et $\GDP$.
 
-En notant que on peut exprimer $\ul{p}_e$ sur le premier élément en fonction de $\GP$ \textit{via} :
+En remarquant que $\ul{p}_e$ sur le premier élément s'exprime en fonction de $\GP$ \textit{via} :
 
 \begin{equation*}
     \ul{p}_e =
@@ -106,7 +104,7 @@ En notant que on peut exprimer $\ul{p}_e$ sur le premier élément en fonction d
     \end{bmatrix}}_{\uul{L}_e}\GP
 \end{equation*}
 
-De même il est possible d'exprimer $\ul{\DP}_e^T = \GDP^T\uul{L}_e^T$. En remplaçant dans~\eqref{FEM1D:elem_mat}, il
+De même, $\ul{\DP}_e$ d'obtient \textit{via} $\ul{\DP}_e^T = \GDP^T\uul{L}_e^T$. En remplaçant dans~\eqref{FEM1D:elem_mat}, il
 vient :
 
 \begin{equation}

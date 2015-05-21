@@ -1,18 +1,18 @@
 Comme dit à la fin de la partie~\ref{part:couplage}, la formulation des conditions limites au moyen des
 caractéristiques conduit à la dérivation des fonctions de forme classiques. Ce point est clairement un désavantage pour
-cette méthode car elle force la perte d'un ordre de convergence.
+cette méthode car il force la perte d'un ordre de convergence.
 
 Dans cette partie, un nouveau jeu de fonctions d'interpolation est proposé dans le but de pallier ce problème. Afin
 d'évaluer la pertinence de la proposition, la comparaison est réalisée entre des éléments quadratiques et la base
-proposée pour une formulation par caractéristiques d'une part et sans d'autre part.
+proposée pour une formulation avec les caractéristiques d'une part et sans d'autre part.
 
 \section{Une nouvelle interpolation : les splines d'Hermite}
 
 Un moyen d'éviter la perte d'un ordre de convergence à l'utilisation de la méthode par caractéristiques serait
 d'utiliser un ensemble de fonctions d'interpolation permettant l'accès direct à la dérivée de la quantité.
 
-L'interpolation par splines d'Hermite utilise 4 «degrés de libertés» répartis sur les deux extrémité du segment à
-interpoler : 2 pour le champ lui-même et 2 pour sa dérivée.
+L'interpolation par splines d'Hermite utilise quatre «degrés de liberté» répartis sur les deux extrémités du segment à
+interpoler : deux pour le champ lui-même et deux pour sa dérivée.
 
 Le champ interpolé pour un segment $e$ d'extrémités $1$ et $2$ est défini tel que :
 
@@ -37,7 +37,7 @@ En suivant une méthode tout à fait analogue à celle développée pour le calc
 La formulation classique revient, une fois de plus, à considérer le coefficient de réflexion $R$ comme une inconnue.
 
 Cette méthode ayant déjà été détaillée en partie~\ref{part:fem}, elle ne sera pas ré-expliquée ici. Le fait de
-considérer une interpolation par spines d'Hermite change en effet l'implémentation mais pas les expresions
+considérer une interpolation par splines d'Hermite change en effet l'implémentation mais pas les expressions
 fonctionnelles.
 
 \subsection{Méthode des caractéristiques}
@@ -49,8 +49,8 @@ De manière tout à fait semblable à ce qui a été mis en place en partie~\ref
 	v_e(0) = -\frac{1}{j\omega\rho}\nabla p\bigg|_0& = & -\frac{1}{j\omega\rho}\underbrace{\left[\Hp{00}(0)\big|\Hp{10}(0)\big|\Hp{01}(0)\big|\Hp{11}(0)\right]}_{H}\begin{Bmatrix}\GP_1\\\GP_2\\\GP_3\\\GP_4\end{Bmatrix}
 \end{eqnarray*}
 
-Le seul point important étant ici de bien garder en tête que le vecteur $\GP$ contient les valeurs du champ de pression
-aux points voulues entrelacées avec les valeurs de la dérivée de ce même champ.
+Le seul point important étant ici de bien comprendre que le vecteur $\GP$ contient les valeurs du champ de pression
+aux points voulus entrelacées avec les valeurs de la dérivée de ce même champ.
 
 En évaluant les polynômes et leurs dérivées en $0$, et avec $\tilde{\ul{u}}_0 = \uul{Q}\ul{u}_0$ :
 

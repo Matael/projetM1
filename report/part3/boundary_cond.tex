@@ -1,5 +1,3 @@
-\section{Retour sur les conditions aux limites en MEF}
-
 Dans cette section, l'objectif est de proposer une formulation de la condition en limite en $x=0$ du problème présenté
 en figure~\ref{fig:rflx:propa_1D} qui n'impose pas de rajouter une ligne au système d'équations de la FEM.
 
@@ -8,6 +6,8 @@ en figure~\ref{fig:rflx:propa_1D} qui n'impose pas de rajouter une ligne au syst
 	\input{part1/figs/FEM/propa_1D.tex}
 	\caption{\label{fig:rflx:propa_1D}Schéma du problème de propagation dans une cavité acoustique 1D de longueur L.}
 \end{figure}
+
+\section{Retour sur les conditions aux limites en MEF}
 
 Pour ce problème et en utilisant le formalisme des éléments finis, le système à résoudre avant l'application de la
 condition limite en $x=0$ mais après celle de la condition en $x=L$ est tel que présenté en~\eqref{FEM1D:post_BCL} :
@@ -39,7 +39,7 @@ Où $\uul{P\Lambda Q}$ est une diagonalisation de $\uul{F}$ telle que :
 \end{bmatrix}
 \]
 
-En posant $\ul{\tilde{u}} = Qu$, le système~\eqref{rflx:begin_dgm} s'écrit simplement $j\omega\ul{\tilde{u}} +
+En posant $\ul{\tilde{u}} = \uul{Q}\ul{u}$, le système~\eqref{rflx:begin_dgm} s'écrit simplement $j\omega\ul{\tilde{u}} +
 \uul{\Lambda}\ul{\tilde{u}} = 0$ et les conditions aux limites peuvent s'écrire sous la forme $$\uul{C}\ul{u} = \ul{s} \Leftrightarrow
 CP\ul{\tilde{u}} = \ul{s}$$
 
@@ -73,7 +73,7 @@ Les conditions de continuité sur $p$ et $v$ permettent d'écrire :
 	\end{Bmatrix}
 \end{equation*}
 
-Soit, en insérant le produit $PQ$ :
+Soit, en insérant le produit $\uul{PQ}$ :
 
 \begin{eqnarray*}
 	\uul{P}
@@ -135,10 +135,13 @@ Les relations d'intérêt sont donc :
 
 \subsection{Interpolation des caractéristiques}
 
-Le système~\eqref{rflx:useful_rels} est écrit en fonction des caractéristiques $\tilde{u}^{+,-}$, et il conviendrait de
+Le système~\eqref{rflx:useful_rels} est écrit en fonction des caractéristiques $\tilde{u}^\pm$, et il conviendrait de
 l'exprimer en utilisant les fonctions de forme $(\phi_1, \ldots, \phi_N)$ introduites par la méthode des éléments finis.
+
 \paragraph{Nota Bene} Dans la suite de la démonstration, ne sont utilisés que des éléments linéaires pour alléger les
 calculs. Le concept est exactement le même pour des éléments quadratiques.
+
+\medskip
 
 Ainsi, il vient\footnote{La seconde étant déduite de la première \textit{via} l'équation d'Euler.} :
 
@@ -161,13 +164,13 @@ Soit :
 
 En reprenant enfin la définition des $\tilde{u}^{+,-}$, il vient :
 
-\begin{equation}
+\begin{equation*}
 \begin{Bmatrix}
 	\tilde{u}^+\\\tilde{u}^-
 \end{Bmatrix}_0 = Q\begin{Bmatrix}
 	v\\p
 \end{Bmatrix}_0 = QW\begin{Bmatrix}\GP_1\\\GP_2\end{Bmatrix}
-\end{equation}
+\end{equation*}
 
 En développant il vient notamment :
 
@@ -176,10 +179,10 @@ En développant il vient notamment :
 \end{equation}
 
 Finalement, la quantité d'intérêt est $\nabla p\big|_0$, accessible depuis $v(0)$ via l'équation d'Euler. D'après la
-définition des $\tilde{u}^{+,-}$ :
+définition des $\tilde{u}^\pm$ :
 
 
-\begin{equation}
+\begin{equation*}
 \begin{Bmatrix}
 	v\\p
 \end{Bmatrix}_0
@@ -187,8 +190,8 @@ définition des $\tilde{u}^{+,-}$ :
 	\tilde{u}^+\\\tilde{u}^-
 \end{Bmatrix}_0 \Leftrightarrow
 v = \tilde{u}^+_0 + \tilde{u}^-_0
-\label{rflx:def_v}
-\end{equation}
+%\label{rflx:def_v}
+\end{equation*}
 
 En prenant $\tilde{u}^+_0$ tel que défini en~\eqref{rflx:useful_rels} et $\tilde{u}^-_0$ comme indiqué
 en~\eqref{rflx:utildem} il vient :
@@ -209,9 +212,9 @@ de~\eqref{rflx:useful_rels}.
 \subsection{Influence sur la convergence}
 
 La simulation présentée ici utilise des éléments quadratiques. En effet, cette méthode demandant de dériver les
-fonctions de forme, elle ne pourra qu'être désastreuse avec des fonctions d'interpolation linéaires.
+fonctions de forme, elle ne pourrait qu'être désastreuse avec des fonctions d'interpolation linéaires.
 
-En figure~\ref{fig:conv_DGMlike_quad} est présenté l'évolution de l'erreur relative commise par l'approximation en
+En figure~\ref{fig:conv_DGMlike_quad} est présentée l'évolution de l'erreur relative commise par l'approximation en
 fonction du nombre d'éléments.
 
 La courbe noire représente l'erreur commise par la méthode classique, avec l'ajout du $R$ aux inconnues. La courbe rouge
@@ -224,5 +227,5 @@ le fait de devoir dériver les fonctions de forme fait qu'un ordre de convergenc
 	\includegraphics[width=10cm]{part3/figs/convergence.png}
 	\caption{\label{fig:conv_DGMlike_quad}Erreur commise par les deux méthodes (ajout du coefficient de réflexion aux
 	inconnues et caractéristiques) en fonction du nombre d'éléments utilisé. L'étude est réalisée uniquement pour des
-	éléments quadratiques. Il faut noter que l'utilisation des caractériques donne de moins pour résultats dans ce cas.}
+	éléments quadratiques. Il faut noter que l'utilisation des caractériques donne de moins bons résultats dans ce cas.}
 \end{figure}

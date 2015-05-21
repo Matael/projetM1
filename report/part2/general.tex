@@ -1,12 +1,12 @@
-Les méthodes de Galerkin, découvertes dans les années 1910, permettent de chercher des solutions à des équations
-différentielles en utilisant des hypothèses sur la forme de solution. Plus tard, dans les années 1970, la méthode de
-Galerkin discontinue fut introduite pour résoudre des équations aux dérivées partielles. Enfin, très récemment,
+Les méthodes de Galerkin, mises au point dans les années 1910, permettent de chercher des solutions à des équations
+différentielles en utilisant des hypothèses sur la forme de la solution. Plus tard, dans les années 1970, la méthode de
+Galerkin discontinue fut introduite pour résoudre des équations aux dérivées partielles (EDP). Enfin, très récemment,
 l'utilisation des caractéristiques de l'EDP comme base pour la formulation des champs (test et solution) a été
 introduite~\cite{Gabard11}.
 
 \section{Généralités}
 
-Soit un milieu de propagation où sont valable les équations suivantes :
+Soit un milieu de propagation où sont valables les équations suivantes :
 
 \begin{eqnarray}
     \left\{\begin{array}{l}
@@ -57,6 +57,8 @@ associés $\ul{P}^{+,-}$ et $\ul{Q}^{+,-}$, il est possible d'écrire :
     \ul{u} = \ul{P}^+\tilde{u} + \ul{P}^-\tilde{u} \label{dgm:sep_u}
 \end{equation}
 
+Les champs $\tilde{u}^\pm$ sont les caractéristiques du problème~\eqref{dgm_eq_u}.
+
 
 \paragraph{Formulation variationnelle}
 
@@ -65,13 +67,13 @@ En utilisant la formulation variationnelle et une intégration par parties, il v
 \begin{equation}
     \begin{array}{c}
     \int_\Omega \ul{v}^T\left(j\omega + \uul{F}\nabla\right)\ul{u}\dd\Omega = 0 \quad,\quad \forall\ul{v}\\
-    -\left(\int_\Omega j\omega v + \uul{A}^T\nabla\ul{v}\right)^Tu\dd\Omega +
+    \Leftrightarrow -\left(\int_\Omega j\omega v + \uul{A}^T\nabla\ul{v}\right)^Tu\dd\Omega +
         \int_{\partial\Omega}\ul{v}^T\uul{A}\ul{u}\dd\Gamma = 0 \quad,\quad \forall\ul{v}
     \end{array}
     \label{dgm:post_ipp}
 \end{equation}
 
-\paragraph{Nota Bene} Le symbole $\cdot^T$ représente une transposition Hermitienne.
+\paragraph{Nota Bene} Le symbole $\bullet^T$ représente une transposition Hermitienne.
 
 L'objectif est alors de choisir le champ de test $\ul{v}$ permettant d'annuler l'intégrale sur $\Omega$ :
 

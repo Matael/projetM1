@@ -1,20 +1,18 @@
-\section{Etude de convergence}
+\section{Étude de convergence}
 
 Afin d'évaluer au mieux l'amélioration apportée par l'utilisation des splines d'Hermite, il est intéressant de comparer
 les résultats rendus par les éléments quadratiques d'une part et les splines d'Hermite d'autre part et ce pour la
 méthode classique et la méthodes basée sur les caractéristiques.
 
 La convergence des différentes méthodes est évaluée en utilisant la formule d'erreur proposée en~\eqref{FEM1D:errf}.
-Les résultats sont présentés en figure~\ref{fig:comp_quad_herm}.
+Les résultats sont présentés en figure~\ref{fig:comp_quad_herm} qui permet de comparer plusieurs configurations.
 
 \begin{figure}[!ht]
 	\centering
 	\includegraphics[width=11cm]{part4/figs/herm_comp.png}
-	\caption{\label{fig:comp_quad_herm}Erreur relative commise avec des éléments quadratiques en noir (pointillés,
+	\caption{\label{fig:comp_quad_herm}Erreur relative commise avec des éléments quadratiques en noir (tireté,
 	méthode classique ; plein, méthode des caractéristiques) et avec des splines d'Hermite (en rouge et bleu).}
 \end{figure}
-
-La figure permet de comparer différents couples de résultats.
 
 \paragraph{Entre éléments quadratiques et splines d'Hermite}
 Dans tous les cas, les splines d'Hermite donnent de meilleurs résultats que les éléments quadratiques. Les courbes de
@@ -29,7 +27,7 @@ de la perte d'un ordre de convergence lors du passage aux caractéristiques. Les
 la nouvelle méthode proposée pour une interpolation des champs par splines d'Hermite ont exactement la même alors. Si
 les courbes pour ce système d'interpolation sont observées de plus près (voir figure~\ref{fig:herm_seul}), il est
 notable que la courbe de convergence pour la méthode par caractéristiques est d'ailleurs en dessous de celle pour la
-méthode classique (ce qui suggère une erreur plus faible).
+méthode classique, ce qui suggère une erreur plus faible.
 
 \begin{figure}[!ht]
 	\centering
