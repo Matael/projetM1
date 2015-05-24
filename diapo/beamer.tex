@@ -7,6 +7,7 @@
 \usepackage{nicefrac}
 \usepackage{color}
 \usepackage{wrapfig}
+
 \input{../report/typesetting.tex}
 \newcommand\GP{\mathbb{P}}
 
@@ -90,6 +91,7 @@
 	\frametitle{Méthode des éléments finis}
 
 	\begin{block}{Influence du type d'éléments}
+		\pause 
 		\begin{center}
 		\includegraphics[width=0.6\textwidth]{../report/part1/figs/FEM/simuls_1D/convergence.png}
 
@@ -104,7 +106,7 @@
 
 	$$\int_\Omega \vec{v}^T\left(j\omega + A\nabla\right)\vec{u}\mathrm{d}\Gamma = 0$$
 
-	\begin{block}{Généralité.s}
+	\begin{block}{Généralités}
 		\begin{itemize}
 			\item Basée sur la formulation variationnelle de l'équation d'Helmholtz
             \item Utilisation des caractéristiques de l'EDP comme champ de test (Gabard \& Dazel, 2015, \textit{Int. J.
@@ -112,6 +114,9 @@
 			\item Possibilité d'utiliser de grands éléments
 		\end{itemize}
 	\end{block}
+
+	\pause
+
 	\begin{block}{Limites}
 		\begin{itemize}
 			\item Quasi-insensible aux petits détails
@@ -127,6 +132,7 @@
         \begin{tikzpicture}[>=stealth,scale=0.4,transform shape]
         \input{propa_1D.tex}
         \end{tikzpicture}
+        \vspace{-0.2\textwidth}
     \end{wrapfigure}
 
 	\begin{block}{Solution exacte en 1D...}

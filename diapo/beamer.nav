@@ -1,4 +1,4 @@
-\beamer@endinputifotherversion {3.24pt}
+\beamer@endinputifotherversion {3.36pt}
 \headcommand {\slideentry {0}{0}{1}{1/1}{}{0}}
 \headcommand {\beamer@framepages {1}{1}}
 \headcommand {\slideentry {0}{0}{2}{2/3}{}{0}}
@@ -19,50 +19,50 @@
 \headcommand {\beamer@framepages {7}{7}}
 \headcommand {\slideentry {2}{0}{7}{8/9}{}{0}}
 \headcommand {\beamer@framepages {8}{9}}
-\headcommand {\slideentry {2}{0}{8}{10/10}{}{0}}
-\headcommand {\beamer@framepages {10}{10}}
-\headcommand {\slideentry {2}{0}{9}{11/11}{}{0}}
-\headcommand {\beamer@framepages {11}{11}}
-\headcommand {\slideentry {2}{0}{10}{12/12}{}{0}}
-\headcommand {\beamer@framepages {12}{12}}
-\headcommand {\sectionentry {3}{Couplage}{13}{Couplage}{0}}
-\headcommand {\beamer@sectionpages {7}{12}}
-\headcommand {\beamer@subsectionpages {7}{12}}
-\headcommand {\slideentry {3}{0}{11}{13/13}{}{0}}
-\headcommand {\beamer@framepages {13}{13}}
-\headcommand {\slideentry {3}{0}{12}{14/15}{}{0}}
-\headcommand {\beamer@framepages {14}{15}}
-\headcommand {\slideentry {3}{0}{13}{16/17}{}{0}}
+\headcommand {\slideentry {2}{0}{8}{10/11}{}{0}}
+\headcommand {\beamer@framepages {10}{11}}
+\headcommand {\slideentry {2}{0}{9}{12/13}{}{0}}
+\headcommand {\beamer@framepages {12}{13}}
+\headcommand {\slideentry {2}{0}{10}{14/14}{}{0}}
+\headcommand {\beamer@framepages {14}{14}}
+\headcommand {\sectionentry {3}{Couplage}{15}{Couplage}{0}}
+\headcommand {\beamer@sectionpages {7}{14}}
+\headcommand {\beamer@subsectionpages {7}{14}}
+\headcommand {\slideentry {3}{0}{11}{15/15}{}{0}}
+\headcommand {\beamer@framepages {15}{15}}
+\headcommand {\slideentry {3}{0}{12}{16/17}{}{0}}
 \headcommand {\beamer@framepages {16}{17}}
-\headcommand {\slideentry {3}{0}{14}{18/19}{}{0}}
+\headcommand {\slideentry {3}{0}{13}{18/19}{}{0}}
 \headcommand {\beamer@framepages {18}{19}}
-\headcommand {\sectionentry {4}{Amélioration de la convergence}{20}{Amélioration de la convergence}{0}}
-\headcommand {\beamer@sectionpages {13}{19}}
-\headcommand {\beamer@subsectionpages {13}{19}}
-\headcommand {\slideentry {4}{0}{15}{20/20}{}{0}}
-\headcommand {\beamer@framepages {20}{20}}
-\headcommand {\slideentry {4}{0}{16}{21/22}{}{0}}
-\headcommand {\beamer@framepages {21}{22}}
-\headcommand {\slideentry {4}{0}{17}{23/26}{}{0}}
-\headcommand {\beamer@framepages {23}{26}}
-\headcommand {\sectionentry {5}{Et ensuite ?}{27}{Et ensuite ?}{0}}
-\headcommand {\beamer@sectionpages {20}{26}}
-\headcommand {\beamer@subsectionpages {20}{26}}
-\headcommand {\slideentry {5}{0}{18}{27/27}{}{0}}
-\headcommand {\beamer@framepages {27}{27}}
-\headcommand {\slideentry {5}{0}{19}{28/28}{}{0}}
-\headcommand {\beamer@framepages {28}{28}}
-\headcommand {\sectionentry {6}{Conclusion}{29}{Conclusion}{0}}
-\headcommand {\beamer@sectionpages {27}{28}}
-\headcommand {\beamer@subsectionpages {27}{28}}
-\headcommand {\slideentry {6}{0}{20}{29/29}{}{0}}
+\headcommand {\slideentry {3}{0}{14}{20/21}{}{0}}
+\headcommand {\beamer@framepages {20}{21}}
+\headcommand {\sectionentry {4}{Amélioration de la convergence}{22}{Amélioration de la convergence}{0}}
+\headcommand {\beamer@sectionpages {15}{21}}
+\headcommand {\beamer@subsectionpages {15}{21}}
+\headcommand {\slideentry {4}{0}{15}{22/22}{}{0}}
+\headcommand {\beamer@framepages {22}{22}}
+\headcommand {\slideentry {4}{0}{16}{23/24}{}{0}}
+\headcommand {\beamer@framepages {23}{24}}
+\headcommand {\slideentry {4}{0}{17}{25/28}{}{0}}
+\headcommand {\beamer@framepages {25}{28}}
+\headcommand {\sectionentry {5}{Et ensuite ?}{29}{Et ensuite ?}{0}}
+\headcommand {\beamer@sectionpages {22}{28}}
+\headcommand {\beamer@subsectionpages {22}{28}}
+\headcommand {\slideentry {5}{0}{18}{29/29}{}{0}}
 \headcommand {\beamer@framepages {29}{29}}
-\headcommand {\slideentry {6}{0}{21}{30/30}{}{0}}
+\headcommand {\slideentry {5}{0}{19}{30/30}{}{0}}
 \headcommand {\beamer@framepages {30}{30}}
-\headcommand {\slideentry {6}{0}{22}{31/31}{}{0}}
+\headcommand {\sectionentry {6}{Conclusion}{31}{Conclusion}{0}}
+\headcommand {\beamer@sectionpages {29}{30}}
+\headcommand {\beamer@subsectionpages {29}{30}}
+\headcommand {\slideentry {6}{0}{20}{31/31}{}{0}}
 \headcommand {\beamer@framepages {31}{31}}
-\headcommand {\beamer@partpages {1}{31}}
-\headcommand {\beamer@subsectionpages {29}{31}}
-\headcommand {\beamer@sectionpages {29}{31}}
-\headcommand {\beamer@documentpages {31}}
+\headcommand {\slideentry {6}{0}{21}{32/32}{}{0}}
+\headcommand {\beamer@framepages {32}{32}}
+\headcommand {\slideentry {6}{0}{22}{33/33}{}{0}}
+\headcommand {\beamer@framepages {33}{33}}
+\headcommand {\beamer@partpages {1}{33}}
+\headcommand {\beamer@subsectionpages {31}{33}}
+\headcommand {\beamer@sectionpages {31}{33}}
+\headcommand {\beamer@documentpages {33}}
 \headcommand {\def \inserttotalframenumber {21}}
