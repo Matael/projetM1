@@ -2,6 +2,7 @@ inoremap <F7> :w<cr>:!pdflatex main.tex<cr>
 nnoremap <F7> :w<cr>:!pdflatex main.tex<cr>
 
 tabnew main.tex
+tabnew abstract.tex
 tabnew thanks.tex
 tabnew introduction.tex
 

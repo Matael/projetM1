@@ -1,40 +1,41 @@
 \select@language {french}
+\thispagestyle {toc}
+\contentsline {paragraph}{\numberline {}Keywords:}{i}
 \contentsline {part}{I\hspace {1em}M\IeC {\'e}thode des \IeC {\'E}l\IeC {\'e}ments finis}{2}
-\contentsline {section}{\numberline {I.}G\IeC {\'e}n\IeC {\'e}ralit\IeC {\'e}s}{3}
-\contentsline {subsection}{\numberline {A)}Formulation Variationnelle}{3}
-\contentsline {subsection}{\numberline {B)}Fonctions de forme}{3}
-\contentsline {subsection}{\numberline {C)}Matrices Bool\IeC {\'e}ennes et Vecteurs Globaux}{4}
-\contentsline {section}{\numberline {II.}Fonctions d'interpolation classiques}{5}
-\contentsline {subsection}{\numberline {A)}\IeC {\'E}l\IeC {\'e}ments Lin\IeC {\'e}aires}{5}
-\contentsline {subsection}{\numberline {B)}\IeC {\'E}l\IeC {\'e}ments quadratiques}{6}
-\contentsline {subsection}{\numberline {C)}Note sur l'impl\IeC {\'e}mentation}{6}
-\contentsline {section}{\numberline {III.}Probl\IeC {\`e}me 1D}{7}
-\contentsline {subsection}{\numberline {A)}Position du Probl\IeC {\`e}me}{7}
+\contentsline {section}{\numberline {I.}G\IeC {\'e}n\IeC {\'e}ralit\IeC {\'e}s}{2}
+\contentsline {subsection}{\numberline {A)}Formulation variationnelle}{2}
+\contentsline {subsection}{\numberline {B)}Fonctions de forme}{2}
+\contentsline {subsection}{\numberline {C)}Matrices bool\IeC {\'e}ennes et vecteurs globaux}{3}
+\contentsline {section}{\numberline {II.}Fonctions d'interpolation classiques}{4}
+\contentsline {subsection}{\numberline {A)}\IeC {\'E}l\IeC {\'e}ments lin\IeC {\'e}aires}{4}
+\contentsline {subsection}{\numberline {B)}\IeC {\'E}l\IeC {\'e}ments quadratiques}{5}
+\contentsline {subsection}{\numberline {C)}Note sur l'impl\IeC {\'e}mentation}{5}
+\contentsline {section}{\numberline {III.}Probl\IeC {\`e}me 1D}{6}
+\contentsline {subsection}{\numberline {A)}Position du probl\IeC {\`e}me}{6}
 \contentsline {subsection}{\numberline {B)}Solution par \IeC {\'e}l\IeC {\'e}ments finis}{7}
-\contentsline {subsection}{\numberline {C)}Prise en compte de l'excitation}{8}
+\contentsline {subsection}{\numberline {C)}Prise en compte de l'excitation}{7}
 \contentsline {subsection}{\numberline {D)}Solution analytique}{8}
-\contentsline {subsection}{\numberline {E)}Convergence}{9}
-\contentsline {part}{II\hspace {1em}M\IeC {\'e}thode de Galerkin Discontinue avec Ondes Planes}{11}
-\contentsline {section}{\numberline {I.}G\IeC {\'e}n\IeC {\'e}ralit\IeC {\'e}s}{12}
-\contentsline {paragraph}{\numberline {}Formulation variationnelle}{12}
-\contentsline {paragraph}{\numberline {}Nota Bene}{13}
-\contentsline {section}{\numberline {II.}Discr\IeC {\'e}tisation des champs}{13}
-\contentsline {section}{\numberline {III.}Probl\IeC {\`e}me 1D}{13}
-\contentsline {subsection}{\numberline {A)}Condition limite \IeC {\`a} droite}{14}
-\contentsline {subsection}{\numberline {B)}Condition limite \IeC {\`a} gauche}{14}
-\contentsline {subsection}{\numberline {C)}Simulation}{15}
-\contentsline {part}{III\hspace {1em}Couplage -- Caract\IeC {\'e}ristiques et Conditions aux Limites}{16}
-\contentsline {section}{\numberline {I.}Retour sur les conditions aux limites en MEF}{17}
-\contentsline {subsection}{\numberline {A)}Utilisation de la formulation de Galerkin}{17}
-\contentsline {subsection}{\numberline {B)}Condition en $x=0$}{17}
-\contentsline {subsection}{\numberline {C)}Interpolation des caract\IeC {\'e}ristiques}{18}
-\contentsline {paragraph}{\numberline {}Nota Bene}{18}
-\contentsline {subsection}{\numberline {D)}Influence sur la convergence}{19}
-\contentsline {part}{IV\hspace {1em}Am\IeC {\'e}lioration de la convergence}{21}
-\contentsline {section}{\numberline {I.}Une nouvelle interpolation : les splines d'Hermite}{22}
-\contentsline {subsection}{\numberline {A)}Formulation classique}{22}
-\contentsline {subsection}{\numberline {B)}M\IeC {\'e}thode des caract\IeC {\'e}ristiques}{22}
-\contentsline {section}{\numberline {II.}\IeC {\'E}tude de convergence}{23}
-\contentsline {paragraph}{\numberline {}Entre \IeC {\'e}l\IeC {\'e}ments quadratiques et splines d'Hermite}{24}
-\contentsline {paragraph}{\numberline {}Entre m\IeC {\'e}thode classique et m\IeC {\'e}thode par caract\IeC {\'e}ristiques}{24}
-\contentsline {chapter}{\numberline {A}Splines d'Hermite}{28}
+\contentsline {subsection}{\numberline {E)}Convergence}{8}
+\contentsline {part}{II\hspace {1em}M\IeC {\'e}thode de Galerkin Discontinue avec Ondes Planes}{10}
+\contentsline {section}{\numberline {I.}G\IeC {\'e}n\IeC {\'e}ralit\IeC {\'e}s}{10}
+\contentsline {paragraph}{\numberline {}Formulation variationnelle}{10}
+\contentsline {paragraph}{\numberline {}Nota Bene}{11}
+\contentsline {section}{\numberline {II.}Discr\IeC {\'e}tisation des champs}{11}
+\contentsline {section}{\numberline {III.}Probl\IeC {\`e}me 1D}{11}
+\contentsline {subsection}{\numberline {A)}Condition limite \IeC {\`a} droite}{12}
+\contentsline {subsection}{\numberline {B)}Condition limite \IeC {\`a} gauche}{12}
+\contentsline {subsection}{\numberline {C)}Simulation}{12}
+\contentsline {part}{III\hspace {1em}Couplage -- Caract\IeC {\'e}ristiques et Conditions aux Limites}{14}
+\contentsline {section}{\numberline {I.}Retour sur les conditions aux limites en FEM}{14}
+\contentsline {subsection}{\numberline {A)}Condition en $x=0$ : utilisation des caract\IeC {\'e}risatiques}{14}
+\contentsline {subsection}{\numberline {B)}Interpolation des caract\IeC {\'e}ristiques}{15}
+\contentsline {paragraph}{\numberline {}Nota Bene}{15}
+\contentsline {section}{\numberline {II.}Influence sur la convergence}{16}
+\contentsline {part}{IV\hspace {1em}Am\IeC {\'e}lioration de la convergence}{18}
+\contentsline {section}{\numberline {I.}Une nouvelle interpolation : les splines d'Hermite}{18}
+\contentsline {subsection}{\numberline {A)}Formulation classique}{18}
+\contentsline {subsection}{\numberline {B)}M\IeC {\'e}thode des caract\IeC {\'e}ristiques}{19}
+\contentsline {section}{\numberline {II.}\IeC {\'E}tude de convergence}{19}
+\contentsline {paragraph}{\numberline {}Entre \IeC {\'e}l\IeC {\'e}ments quadratiques et splines d'Hermite}{20}
+\contentsline {paragraph}{\numberline {}Entre m\IeC {\'e}thode classique et m\IeC {\'e}thode par caract\IeC {\'e}ristiques}{20}
+\contentsline {chapter}{\numberline {A}Splines d'Hermite}{24}

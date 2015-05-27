@@ -1,0 +1,24 @@
+\section*{Abstract}
+
+As comptuation power and problems complexity increase, designing efficient numerical methods is a major challenge.
+
+Some, among the large amount of available methods, have been known and used for years, but each is often limited to
+certain types of problems. The key idea behind the present work is to prepare coupling between Finite Elements
+Method (FEM) and Discontinuous Galerkin Method (DGM).
+
+As FEM is particularly well-suited for small and detailled configurations and plane waves based DGM allows efficient modelling of
+propagation in large cavities without too much details, coupling of both would lead to great improvements in
+numerical computation of propagation in complex medium.
+
+This document uses classical FEM formulation and the plane waves based DGM formulation recently proposed by
+Gabard \textit{et al.}~\cite{Gabard15,Gabard11} as a basis. Both methods are succintly introduced and a coupling possibility
+based on the rewriting of FEM boundary conditions using a DGM-compatible approach is then studied.
+
+As this modification has a non-negligible impact on convergence of the method, a new interpolation functions basis
+using Hermite splines is proposed.
+
+The convergence rate and overall accuracy of the final method (based on rewritten boundary conditions and Hermite
+splines) are finally shown to be better than those of the method based on classical FEM boundary conditions and
+quadratic elements.
+
+\paragraph{Keywords:} Helmholtz; finite elements; discontinuous Galerkin; coupling; convergence

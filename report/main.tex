@@ -1,4 +1,4 @@
-\documentclass[a4paper, 11pt]{report}
+\documentclass[a4paper, 11pt, twoside]{report}
 
     % preambule {{{
 
@@ -62,11 +62,8 @@
 
     \fancypagestyle{plain}{%
         \fancyhf{} % clear all header and footer fields
-        \fancyfoot[L]{\textsc{Gaborit}}
-        \fancyfoot[C]{}
-        \fancyfoot[R]{\thepage/\pageref{LastPage}}
         \renewcommand{\headrulewidth}{0pt}
-        \renewcommand{\footrulewidth}{.4pt}
+        \renewcommand{\footrulewidth}{0pt}
     }
 
     \fancypagestyle{toc}{%
@@ -77,6 +74,8 @@
         \renewcommand{\headrulewidth}{0pt}
         \renewcommand{\footrulewidth}{.4pt}
     }
+	\AtBeginDocument{\addtocontents{toc}{\protect\thispagestyle{toc}}} 
+
 
     \renewcommand{\headrulewidth}{0pt}
     \renewcommand{\footrulewidth}{.4pt}
@@ -139,6 +138,7 @@
 \rfoot{\thepage}
 \setcounter{page}{1}
 \input{thanks.tex}
+\input{abstract.tex}
 
 \newpage
 % sommaire [PAS TOUCHE] {{{1
@@ -146,8 +146,8 @@
 \vskip .5cm
 \hrule height .5pt}
 \tableofcontents
-\thispagestyle{toc}
 \newpage
+\pagestyle{fancy}
 
 
 % Chapitres {{{1
@@ -158,6 +158,8 @@
 
 \part{Méthode des Éléments finis}
 \label{part:fem}
+\newpage\thispagestyle{empty}\null\newpage
+\addtocounter{page}{-2}
 \setcounter{section}{0}
 \input{part1/general.tex}
 \input{part1/interp.tex}
@@ -165,6 +167,8 @@
 
 \part{Méthode de Galerkin Discontinue avec Ondes Planes}
 \label{part:dgm}
+\newpage\thispagestyle{empty}\null\newpage
+\addtocounter{page}{-2}
 \setcounter{section}{0}
 \input{part2/general.tex}
 \input{part2/discretisation.tex}
@@ -172,16 +176,21 @@
 
 \part{Couplage -- Caractéristiques et Conditions aux Limites}
 \label{part:couplage}
+\newpage\thispagestyle{empty}\null\newpage
+\addtocounter{page}{-2}
 \setcounter{section}{0}
 \input{part3/boundary_cond.tex}
 
 \part{Amélioration de la convergence}
 \label{part:convergence}
+\newpage\thispagestyle{empty}\null\newpage
+\addtocounter{page}{-2}
 \setcounter{section}{0}
 \input{part4/hermite.tex}
 \input{part4/convergence.tex}
 
-\newpage
+\clearpage
+
 \input{conclusion.tex}
 
 % previous style : alpha
@@ -190,6 +199,9 @@
 \bibliography{biblio}
 
 \appendix
+\part*{Annexes}
+\newpage\thispagestyle{empty}\null\newpage
+\addtocounter{page}{-2}
 
 \input{appendices/hermite_stuff.tex}
 

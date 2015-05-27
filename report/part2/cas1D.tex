@@ -46,9 +46,9 @@ En utilisant maintenant~\eqref{dgm:sep_u}, et en réutilisant le résultat préc
 
 \subsection{Condition limite à gauche}
 
-A gauche, les conditions de continuité impliquent :
+A gauche, les conditions de continuité à gauche (voir figure~\ref{fig:interface}) impliquent :
 
-\begin{figure}[!ht]
+\begin{figure}[p]
 	\centering
 	\input{part4/figs/interface.tex}
     \caption{\label{fig:interface}Interface à gauche du problème.}
@@ -90,12 +90,12 @@ En 1D, la DGM avec ondes planes présentée ici conduit à une solution exacte. 
 de la convergence pour le calcul du coefficient, c'est le tracé du profil de pression qui est réalisé. Le résultat est
 présenté en figure~\ref{fig:dgm:simul}.
 
-\begin{figure}[!ht]
+\begin{figure}[p]
     \centering
     \includegraphics[width=11cm]{part2/figs/comp_hermiteFEM_dgm.png}
     \caption{\label{fig:dgm:simul}En haut : profil de pression dans la cavité par méthode de Galerkin discontinue (en rouge) et
     profil de référence (en bleu). En bas : erreur relative (norme $L_2$ des pressions) pour chaque point.}
 \end{figure}
 
-Aucune différence n'est visuellement constatable entre les deux courbes. Qui plus est, l'erreur, à presque $10^{-13}$,
-s'approche du bruit numérique.
+Aucune différence n'est visuellement constatable entre les deux courbes. Enfin l'erreur, à presque $10^{-13}$,
+s'approche du bruit numérique et est négligeable.

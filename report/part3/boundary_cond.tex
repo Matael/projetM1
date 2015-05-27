@@ -7,7 +7,7 @@ en figure~\ref{fig:rflx:propa_1D} qui n'impose pas de rajouter une ligne au syst
 	\caption{\label{fig:rflx:propa_1D}Schéma du problème de propagation dans une cavité acoustique 1D de longueur L.}
 \end{figure}
 
-\section{Retour sur les conditions aux limites en MEF}
+\section{Retour sur les conditions aux limites en FEM}
 
 Pour ce problème et en utilisant le formalisme des éléments finis, le système à résoudre avant l'application de la
 condition limite en $x=0$ mais après celle de la condition en $x=L$ est tel que présenté en~\eqref{FEM1D:post_BCL} :
@@ -17,7 +17,7 @@ condition limite en $x=0$ mais après celle de la condition en $x=L$ est tel que
 \end{equation}
 
 
-\subsection{Utilisation de la formulation de Galerkin}
+\subsection{Condition en $x=0$ : utilisation des caractérisatiques}
 
 Sous le formalisme de la méthode de Galerkin, il vient :
 
@@ -42,8 +42,6 @@ Où $\uul{P\Lambda Q}$ est une diagonalisation de $\uul{F}$ telle que :
 En posant $\ul{\tilde{u}} = \uul{Q}\ul{u}$, le système~\eqref{rflx:begin_dgm} s'écrit simplement $j\omega\ul{\tilde{u}} +
 \uul{\Lambda}\ul{\tilde{u}} = 0$ et les conditions aux limites peuvent s'écrire sous la forme $$\uul{C}\ul{u} = \ul{s} \Leftrightarrow
 CP\ul{\tilde{u}} = \ul{s}$$
-
-\subsection{Condition en $x=0$}
 
 Les conditions de continuité sur $p$ et $v$ permettent d'écrire :
 
@@ -178,8 +176,11 @@ En développant il vient notamment :
 	\tilde{u}^-_0 = -\frac{1}{2Z_0}\left[\left(\phi_1(0) + \frac{\phi'_1(0)}{jk}\right)\GP_1 + \left(\phi_2(0) + \frac{\phi'_2(0)}{jk}\right)\GP_2 \right]\label{rflx:utildem}
 \end{equation}
 
-Finalement, la quantité d'intérêt est $\nabla p\big|_0$, accessible depuis $v(0)$ via l'équation d'Euler. D'après la
-définition des $\tilde{u}^\pm$ :
+Finalement, la quantité d'intérêt est $\nabla p\big|_0$, accessible depuis $v(0)$ via l'équation d'Euler.
+
+\pagebreak
+
+D'après la définition des $\tilde{u}^\pm$ :
 
 
 \begin{equation*}
@@ -209,7 +210,7 @@ faire apparaître $R$. Cette quantité servant (dans le cadre de ce document) de
 bon de remarquer que $R$ peut facilement être retrouvé en utilisant~\eqref{rflx:utildem} et la seconde équation
 de~\eqref{rflx:useful_rels}.
 
-\subsection{Influence sur la convergence}
+\section{Influence sur la convergence}
 
 La simulation présentée ici utilise des éléments quadratiques. En effet, cette méthode demandant de dériver les
 fonctions de forme, elle ne pourrait qu'être désastreuse avec des fonctions d'interpolation linéaires.
