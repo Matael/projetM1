@@ -11,7 +11,7 @@
 ^^I^^I\begin{center}
 ^^I^^I\includegraphics[width=0.6\textwidth]{comp_hermiteFEM_dgm.png}
 
-        \footnotesize{Pression acoustique dans la cavité de \textcolor{blue}{référence} et calculée\\
+        \footnotesize{Pression acoustique de \textcolor{blue}{référence} dans la cavité et calculée\\
         par \textcolor{red}{DGM} en fonction de la distance.}
 ^^I^^I\end{center}
 ^^I\end{block}
